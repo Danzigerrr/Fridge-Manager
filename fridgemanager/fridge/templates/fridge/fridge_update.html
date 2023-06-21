@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Fridges</title>
+</head>
+<body>
+{% extends 'fridge/base.html' %}
+
+{% block content %}
+
+    <h1>FRIDGE UPDATE PAGE</h1>
+
+    <h2>Update fridge with id "{{ fridge.id }}":</h2>
+
+        <form action="" method=POST>
+            {% csrf_token %}
+            {{ form.as_p }}
+            <br/>
+            <input type="submit" value="Update" class="btn btn-secondary">
+        </form>
+
+
+
+{% endblock %}
+
+</body>
+</html>

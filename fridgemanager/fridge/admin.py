@@ -13,7 +13,7 @@ class ProductAdmin(admin.ModelAdmin):
 
 @admin.register(Fridge)
 class FridgeAdmin(admin.ModelAdmin):
-    fields = (('name', 'created_date'), 'description', 'owners')  # creating page
+    fields = (('name', ), 'description', 'owners')  # creating page
     list_display = ('name', 'created_date')  # main page view
     list_filter = ('name', 'created_date')
     ordering = ('name',)  # default sort order

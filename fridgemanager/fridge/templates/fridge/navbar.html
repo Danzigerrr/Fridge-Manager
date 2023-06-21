@@ -9,9 +9,30 @@
       <li class="nav-item">
         <a class="nav-link" href="{% url 'home' %}">Home</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="{% url 'all_products' %}">Products</a>
+
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownFridge" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Fridge
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="{% url 'all_fridges' %}">Your fridges</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="{% url 'add_fridge' %}">Add fridge</a>
+        </div>
       </li>
+
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownProducts" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Products
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="{% url 'all_products' %}">Your products</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="{% url 'add_product' %}">Add products</a>
+        </div>
+      </li>
+
+
     </ul>
     <form class="form-inline my-2 my-lg-0">
       <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">

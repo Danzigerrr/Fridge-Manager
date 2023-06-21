@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Product</title>
+</head>
+<body>
+{% extends 'fridge/base.html' %}
+
+{% block content %}
+    <center>
+        <h1> Add Product </h1>
+        <br><br/>
+        {% if submitted %}
+            Your Product Was Added Successfully!
+        {% else %}
+            <form action="" method=POST>
+                {% csrf_token %}
+                {% for field in form %}
+                    {{ field.label_tag }} {{ field }}
+                <br/>
+                {% endfor %}
+                <input type="submit" value="Submit" class="btn btn-success">
+            </form>
+        {% endif %}
+    </center>
+
+{% endblock %}
+
+</body>
+</html>

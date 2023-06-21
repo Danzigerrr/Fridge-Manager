@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Fridges</title>
+</head>
+<body>
+{% extends 'fridge/base.html' %}
+
+{% block content %}
+
+    <h1>FRIDGE DETAILS PAGE</h1>
+
+    <h2>Fridge with id "{{ fridge.id }}":</h2>
+
+            <div class="card">
+              <div class="card-header">
+                  <strong>{{ fridge.name }} </strong>
+              </div>
+              <div class="card-body">
+                <ul>
+                 <li>Creation date: {{ fridge.created_date }} </li>
+                 <li>Owners: {{ fridge.owners.name }} </li>
+                 <li>Description: {{ fridge.description }} </li>
+                    <br>
+                 <a href="{% url 'fridge_update' fridge.id %}" class="btn btn-secondary btn-sm">Update this fridge</a>
+
+                </ul>
+                  <!--                <a href="#" class="btn btn-primary">Go somewhere</a>-->
+              </div>
+            </div>
+            <br/>
+
+{% endblock %}
+
+</body>
+</html>

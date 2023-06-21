@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Fridges</title>
+
+    <style>
+
+
+    </style>
+
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet"/>
+</head>
+<body>
+{% extends 'fridge/base.html' %}
+
+{% block content %}
+
+    <h1>FRIDGES PAGE</h1>
+
+    <h2>Fridges:</h2>
+    <table class="table table-striped table-hover table-bordered">
+         <thead class="thead-dark">
+            <tr>
+              <th scope="col">Id</th>
+              <th scope="col">Name</th>
+              <th scope="col">Actions</th>
+            </tr>
+          </thead>
+        <tbody>
+            {% for fridge in fridges %}
+                <tr>
+                    <td> <strong>{{ fridge.id }} </strong> </td>
+                    <td> <strong>{{ fridge.name }} </strong> </td>
+                    <td>
+                        <a href="{% url 'fridge_detail' fridge.id %}" class="btn btn-primary btn-sm">Details</a>
+                        <a href="{% url 'fridge_update' fridge.id %}" class="btn btn-secondary btn-sm">Update</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+
+    </table>
+<br/>
+{% endblock %}
+
+</body>
+</html>

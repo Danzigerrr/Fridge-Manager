@@ -6,6 +6,7 @@ class FridgeUser(models.Model):
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
     email = models.EmailField('User email', max_length=100)
+    created_date = models.DateTimeField('Registration date in the system', auto_now_add=True)
 
     def __str__(self):
         return self.first_name + ' ' + self.last_name
@@ -13,7 +14,7 @@ class FridgeUser(models.Model):
 
 class Fridge(models.Model):
     name = models.CharField('Fridge name', max_length=100)
-    created_date = models.DateTimeField('Registration date in the system')
+    created_date = models.DateTimeField('Registration date in the system', auto_now_add=True)
     description = models.CharField('Details about the fridge', max_length=200, blank=True)
     owners = models.ManyToManyField(FridgeUser, blank=True)  # one to many
 
