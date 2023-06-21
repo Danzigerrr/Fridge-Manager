@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Products</title>
+</head>
+<body>
+{% extends 'fridge/base.html' %}
+
+{% block content %}
+
+    <h1>PRODUCTS PAGE</h1>
+
+    <h2>Products:</h2>
+        {% for product in products %}
+
+            <div class="card">
+              <div class="card-header">
+                  <strong>{{ product.name }} </strong>
+              </div>
+              <div class="card-body">
+                <ul>
+                 <li>Expiration date: {{ product.expire_date }} </li>
+                 <li>Amount: {{ product.amount }} </li>
+                 <li>Description: {{ product.description }} </li>
+                </ul>
+                  <!--                <a href="#" class="btn btn-primary">Go somewhere</a>-->
+              </div>
+            </div>
+            <br/>
+    {% endfor %}
+
+{% endblock %}
+
+</body>
+</html>
