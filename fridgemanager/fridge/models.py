@@ -32,7 +32,6 @@ class Product(models.Model):
     CAN = "Can"
     PACKAGE = "Package"
     CONTAINER = "Container"
-
     AMOUNT_UNIT_VALUES = [
         (PIECES, 'Pieces'),
         (GRAMS, 'Grams'),

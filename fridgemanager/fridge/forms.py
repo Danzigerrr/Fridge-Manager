@@ -1,7 +1,6 @@
 from django import forms
 from django.forms import ModelForm
-from .models import Fridge
-from .models import Product
+from .models import Fridge, Product
 
 
 class FridgeForm(ModelForm):
@@ -25,7 +24,6 @@ class FridgeForm(ModelForm):
 class ProductForm(forms.ModelForm):
     # TODO: get only fridges available for this suer
     fridge = forms.ModelChoiceField(queryset=Fridge.objects.all(), empty_label=None, widget=forms.Select(attrs={'class': 'form-control'}))
-
     amount_unit = forms.ChoiceField(choices=Product.AMOUNT_UNIT_VALUES, widget=forms.Select(attrs={'class': 'form-control'}))
 
     class Meta:
@@ -34,7 +32,7 @@ class ProductForm(forms.ModelForm):
         # fields = ('name', 'description')
         labels = {
             'name': '',
-            'expire_date': '',
+            'expire_date': 'YYYY-MM-DD HH:MM:SS',
             'amount': '',
             'amount_unit': '',
             'description': '',
