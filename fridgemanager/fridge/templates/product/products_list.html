@@ -1,38 +1,27 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Products</title>
-</head>
-<body>
 {% extends 'base.html' %}
-
 {% block content %}
+<h1>PRODUCTS PAGE</h1>
+<h2>Products:</h2>
+{% for product in products %}
+<div class="card">
+	<div class="card-header">
+		<strong>{{ product.name }} </strong>
+	</div>
+	<div class="card-body">
+		<ul>
+			<li>Expiration date: {{ product.expire_date }} </li>
+			<li>Amount: {{ product.amount }} </li>
+			<li>Description: {{ product.description }} </li>
+		</ul>
+		<a href="{% url 'product_update' product.id %}" class="btn btn-primary">Update</a>
+		<a href="{% url 'product_delete' product.id %}" class="btn btn-danger">Delete</a>
+		<a href="{% url 'product_detail' product.id %}" class="btn btn-secondary">Detail</a>
+	</div>
+</div>
+<br/>
+{% endfor %}
+<hr>
 
-    <h1>PRODUCTS PAGE</h1>
-
-    <h2>Products:</h2>
-        {% for product in products %}
-
-            <div class="card">
-              <div class="card-header">
-                  <strong>{{ product.name }} </strong>
-              </div>
-              <div class="card-body">
-                <ul>
-                 <li>Expiration date: {{ product.expire_date }} </li>
-                 <li>Amount: {{ product.amount }} </li>
-                 <li>Description: {{ product.description }} </li>
-                </ul>
-                  <a href="{% url 'product_update' product.id %}" class="btn btn-primary">Update</a>
-                  <a href="{% url 'product_delete' product.id %}" class="btn btn-danger">Delete</a>
-                  <a href="{% url 'product_detail' product.id %}" class="btn btn-secondary">Detail</a>
-              </div>
-            </div>
-            <br/>
-    {% endfor %}
+{% include 'product/products_list_paginator.html' %}
 
 {% endblock %}
-
-</body>
-</html>

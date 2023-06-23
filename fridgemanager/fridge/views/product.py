@@ -2,11 +2,18 @@ from django.shortcuts import render, redirect
 from ..models import Product
 from ..forms import ProductForm
 from django.http import HttpResponseRedirect
+from django.core.paginator import Paginator
 
 
 def product_list(request):
-    products = Product.objects.all().order_by('expire_date')
-    return render(request, 'product/products_list.html', {'products': products})
+    products_in_database = Product.objects.all()
+    # set up pagination
+    p = Paginator(products_in_database, 2)  # 2nd arg --> objects per page
+    page = request.GET.get('page')
+    products_to_show = p.get_page(page)
+
+    return render(request, 'product/products_list.html',
+                  {'products': products_to_show})
 
 
 def product_add(request):

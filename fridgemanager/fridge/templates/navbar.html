@@ -32,6 +32,18 @@
         </div>
       </li>
 
+      {% if user.is_authenticated %}
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+      </li>
+      {% else %}
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'login' %}">Login</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'register_user' %}">Register</a>
+      </li>
+      {% endif %}
 
     </ul>
     <form class="form-inline my-2 my-lg-0">

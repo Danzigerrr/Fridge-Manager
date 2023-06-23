@@ -13,7 +13,7 @@ class ProductAdmin(admin.ModelAdmin):
 
 @admin.register(Fridge)
 class FridgeAdmin(admin.ModelAdmin):
-    fields = (('name', ), 'description', 'owners')  # creating page
+    fields = (('name',), 'description', 'owners')  # creating page
     list_display = ('name', 'created_date')  # main page view
     list_filter = ('name', 'created_date')
     ordering = ('name',)  # default sort order
@@ -25,5 +25,11 @@ class FridgeUserAdmin(admin.ModelAdmin):
     fields = (('first_name', 'last_name'), 'email')
     list_display = ('first_name', 'last_name', 'email')
     list_filter = ('first_name', 'last_name')
-    ordering = ('first_name', 'last_name', )
+    ordering = ('first_name', 'last_name',)
     search_fields = ('first_name', 'last_name', 'email')
+
+
+# Configure Admin Titles
+admin.site.site_header = "Fridge Manager Administration Page"
+admin.site.site_title = "Fridge Manager Admin Panel"
+admin.site.index_title = "Welcome to the Admin Area of Fridge Manager"
