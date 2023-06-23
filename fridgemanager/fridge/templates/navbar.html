@@ -11,24 +11,24 @@
       </li>
 
       <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownFridge" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <a class="nav-link dropdown-toggle" href="{% url 'fridge_list' %}" id="navbarDropdownFridge" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Fridge
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="{% url 'all_fridges' %}">Your fridges</a>
+          <a class="dropdown-item" href="{% url 'fridge_list' %}">Your fridges</a>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="{% url 'add_fridge' %}">Add fridge</a>
+          <a class="dropdown-item" href="{% url 'fridge_add' %}">Add fridge</a>
         </div>
       </li>
 
       <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownProducts" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <a class="nav-link dropdown-toggle" href="{% url 'product_list' %}" id="navbarDropdownProducts" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Products
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="{% url 'all_products' %}">Your products</a>
+          <a class="dropdown-item" href="{% url 'product_list' %}">Your products</a>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="{% url 'add_product' %}">Add products</a>
+          <a class="dropdown-item" href="{% url 'product_add' %}">Add products</a>
         </div>
       </li>
 

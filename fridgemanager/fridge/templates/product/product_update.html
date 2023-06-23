@@ -1,17 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Fridges</title>
-</head>
-<body>
 {% extends 'base.html' %}
 
 {% block content %}
 
-    <h1>FRIDGE UPDATE PAGE</h1>
+    <h1>PRODUCT UPDATE PAGE</h1>
 
-    <h2>Update fridge with id "{{ fridge.id }}":</h2>
+    <h2>Update Product with id "{{ fridge.id }}":</h2>
 
         <form action="" method=POST>
             {% csrf_token %}
@@ -20,9 +13,4 @@
             <input type="submit" value="Update" class="btn btn-secondary">
         </form>
 
-
-
 {% endblock %}
-
-</body>
-</html>

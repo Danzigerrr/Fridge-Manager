@@ -2,17 +2,16 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Products</title>
+    <title>Product</title>
 </head>
 <body>
-{% extends 'fridge/base.html' %}
+{% extends 'base.html' %}
 
 {% block content %}
 
-    <h1>PRODUCTS PAGE</h1>
+    <h1>PRODUCT DETAILS PAGE</h1>
 
-    <h2>Products:</h2>
-        {% for product in products %}
+    <h2>Product with id "{{ product.id }}":</h2>
 
             <div class="card">
               <div class="card-header">
@@ -20,15 +19,17 @@
               </div>
               <div class="card-body">
                 <ul>
-                 <li>Expiration date: {{ product.expire_date }} </li>
-                 <li>Amount: {{ product.amount }} </li>
+                 <li>Creation date: {{ product.created_date }} </li>
+                 <li>Owners: {{ product.owners.name }} </li>
                  <li>Description: {{ product.description }} </li>
+                    <br>
+                 <a href="{% url 'product_update' product.id %}" class="btn btn-secondary btn-sm">Update this product</a>
+
                 </ul>
                   <!--                <a href="#" class="btn btn-primary">Go somewhere</a>-->
               </div>
             </div>
             <br/>
-    {% endfor %}
 
 {% endblock %}
 

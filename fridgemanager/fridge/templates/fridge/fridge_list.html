@@ -12,11 +12,14 @@
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet"/>
 </head>
 <body>
-{% extends 'fridge/base.html' %}
+{% extends 'base.html' %}
 
 {% block content %}
 
     <h1>FRIDGES PAGE</h1>
+        <a href="{% url 'fridges_export_as_text' %}" class="btn btn-info btn-sm">Export as TEXT file</a>
+        <a href="{% url 'fridges_export_as_csv' %}" class="btn btn-info btn-sm">Export as CSV file</a>
+        <a href="{% url 'fridges_export_as_pdf' %}" class="btn btn-info btn-sm">Export as PDF file</a>
 
     <h2>Fridges:</h2>
     <table class="table table-striped table-hover table-bordered">
@@ -35,6 +38,7 @@
                     <td>
                         <a href="{% url 'fridge_detail' fridge.id %}" class="btn btn-primary btn-sm">Details</a>
                         <a href="{% url 'fridge_update' fridge.id %}" class="btn btn-secondary btn-sm">Update</a>
+                        <a href="{% url 'fridge_delete' fridge.id %}" class="btn btn-danger btn-sm">Delete</a>
                     </td>
                 </tr>
             {% endfor %}
