@@ -1,21 +1,19 @@
 {% extends 'base.html' %}
-
 {% block content %}
-
-    <h1>LOGIN PAGE</h1>
-    <br>
-    <form action="" method=POST>
-        {% csrf_token %}
-
-          <div class="form-group">
-            <label for="usernameInput">Username</label>
-            <input type="text" class="form-control" name="username" id="usernameInput" placeholder="Enter username">
-          </div>
-          <div class="form-group">
-            <label for="inputPassword">Password</label>
-            <input type="password" class="form-control" name="password" id="inputPassword" placeholder="Password">
-          </div>
-        <input type="submit" value="Submit" class="btn btn-success">
-    </form>
-
+<h1>Login</h1>
+<br/>
+<form action="" method=POST>
+	{% csrf_token %}
+<form>
+	<div class="mb-3">
+		<label for="usernameInputField" class="form-label">Username</label>
+		<input type="text" class="form-control" id="usernameInputField" name="username" aria-describedby="emailHelp">
+	</div>
+	<div class="mb-3">
+		<label for="passwordInputField" class="form-label">Password</label>
+		<input type="password" class="form-control" id="passwordInputField" name="password">
+	</div>
+	<input type="submit" value="Submit" class="btn btn-secondary">
+</form>
+<br/><br/>
 {% endblock %}
