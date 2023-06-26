@@ -8,18 +8,20 @@
 			<li class="nav-item">
 				<a class="nav-link" href="{% url 'home' %}">Home</a>
 			</li>
+			{% if user.is_authenticated %}
 			<li class="nav-item dropdown">
 				<a class="nav-link dropdown-toggle" href="{% url 'fridge_list' %}" id="navbarDropdownFridge" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 				Fridge
 				</a>
 				<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 					<a class="dropdown-item" href="{% url 'fridge_list' %}">Your fridges</a>
-					{% if user.is_authenticated %}
+
 						<div class="dropdown-divider"></div>
 						<a class="dropdown-item" href="{% url 'fridge_add' %}">Add fridge</a>
-					{% endif %}
 				</div>
 			</li>
+			{% endif %}
+			{% if user.is_authenticated %}
 			<li class="nav-item dropdown">
 				<a class="nav-link dropdown-toggle" href="{% url 'product_list' %}" id="navbarDropdownProducts" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 				Products
@@ -32,6 +34,7 @@
 					{% endif %}
 				</div>
 			</li>
+			{% endif %}
 			{% if user.is_authenticated %}
 			<li class="nav-item">
 				<a class="nav-link" href="{% url 'logout' %}">Logout</a>

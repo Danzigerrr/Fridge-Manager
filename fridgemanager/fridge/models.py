@@ -16,7 +16,7 @@ class Fridge(models.Model):
     name = models.CharField('Fridge name', max_length=100)
     created_date = models.DateTimeField('Registration date in the system', auto_now_add=True)
     description = models.CharField('Details about the fridge', max_length=200, blank=True)
-    owners = models.ManyToManyField(FridgeUser, blank=True)  # one to many
+    owners = models.ManyToManyField(User, blank=True)  # one to many
 
     def __str__(self):
         return self.name

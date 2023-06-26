@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h2>Products in fridge:</h2>
+<h2>Products:</h2>
+	{% for owner in fridge.owners.all %}
+		{% if user == owner %}
+			{% for product in products_in_fridge %}
+				<div class="card">
+					<div class="card-header">
+						<strong>{{ product.name }} </strong>
+					</div>
+					<div class="card-body">
+						<ul>
+							<li>Expiration date: {{ product.expire_date }} </li>
+							<li>Amount: {{ product.amount }} </li>
+							<li>Description: {{ product.description }} </li>
+						</ul>
+						<a href="{% url 'product_update' fridge.id product.id %}" class="btn btn-primary">Update</a>
+						<a href="{% url 'product_delete' fridge.id product.id %}" class="btn btn-danger">Delete</a>
+						<a href="{% url 'product_detail' fridge.id product.id %}" class="btn btn-secondary">Detail</a>
+					</div>
+				</div>
+				<br/>
+			{% endfor %}
+		{% endif %}
+	{% endfor %}
+<hr>
+
+{% include 'product/products_list_paginator.html' %}
+{% endblock %}
