@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
+    {% if user.is_authenticated %}
     <center>
         <h1> Add Product </h1>
         <br><br/>
@@ -17,5 +18,10 @@
             </form>
         {% endif %}
     </center>
+
+    {% else %}
+        {% include 'no_access_without_login_info.html' %}
+    {% endif %}
+
 
 {% endblock %}

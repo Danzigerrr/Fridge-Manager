@@ -1,17 +1,20 @@
 {% extends 'base.html' %}
-
 {% block content %}
+    {% if user.is_authenticated %}
     <center>
         <h1> Add Fridge </h1>
         <br><br/>
         {% if submitted %}
             Your Fridge Was Added Successfully!
         {% else %}
-            <form action="" method=POST>
-                {% csrf_token %}
-                {{ form.as_p }}
-                <input type="submit" value="Submit" class="btn btn-success">
-            </form>
+        <form action="" method=POST>
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" value="Submit" class="btn btn-success">
+        </form>
         {% endif %}
     </center>
+    {% else %}
+        {% include 'no_access_without_login_info.html' %}
+    {% endif %}
 {% endblock %}

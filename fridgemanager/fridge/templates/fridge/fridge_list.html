@@ -22,9 +22,11 @@
                     <td> <strong>{{ fridge.id }} </strong> </td>
                     <td> <strong>{{ fridge.name }} </strong> </td>
                     <td>
+                        {% if user.is_authenticated %}
+                            <a href="{% url 'fridge_update' fridge.id %}" class="btn btn-secondary btn-sm">Update</a>
+                            <a href="{% url 'fridge_delete' fridge.id %}" class="btn btn-danger btn-sm">Delete</a>
+                        {% endif %}
                         <a href="{% url 'fridge_detail' fridge.id %}" class="btn btn-primary btn-sm">Details</a>
-                        <a href="{% url 'fridge_update' fridge.id %}" class="btn btn-secondary btn-sm">Update</a>
-                        <a href="{% url 'fridge_delete' fridge.id %}" class="btn btn-danger btn-sm">Delete</a>
                     </td>
                 </tr>
             {% endfor %}

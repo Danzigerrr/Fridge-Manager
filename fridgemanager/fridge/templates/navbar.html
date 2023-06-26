@@ -14,8 +14,10 @@
 				</a>
 				<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 					<a class="dropdown-item" href="{% url 'fridge_list' %}">Your fridges</a>
-					<div class="dropdown-divider"></div>
-					<a class="dropdown-item" href="{% url 'fridge_add' %}">Add fridge</a>
+					{% if user.is_authenticated %}
+						<div class="dropdown-divider"></div>
+						<a class="dropdown-item" href="{% url 'fridge_add' %}">Add fridge</a>
+					{% endif %}
 				</div>
 			</li>
 			<li class="nav-item dropdown">
@@ -24,8 +26,10 @@
 				</a>
 				<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 					<a class="dropdown-item" href="{% url 'product_list' %}">Your products</a>
-					<div class="dropdown-divider"></div>
-					<a class="dropdown-item" href="{% url 'product_add' %}">Add products</a>
+					{% if user.is_authenticated %}
+						<div class="dropdown-divider"></div>
+						<a class="dropdown-item" href="{% url 'product_add' %}">Add products</a>
+					{% endif %}
 				</div>
 			</li>
 			{% if user.is_authenticated %}
