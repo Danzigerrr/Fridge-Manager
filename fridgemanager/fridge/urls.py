@@ -14,6 +14,7 @@ urlpatterns = [
     path('fridges/<fridge_id>/detail', views.fridge_detail, name='fridge_detail'),
     path('fridges/<fridge_id>/update', views.fridge_update, name='fridge_update'),
     path('fridges/<fridge_id>/delete', views.fridge_delete, name='fridge_delete'),
+    path('fridges/<fridge_id>/products', views.fridge_products, name='fridge_products'),
     path('fridges/export_as_text', views.fridges_export_as_text, name='fridges_export_as_text'),
     path('fridges/export_as_csv', views.fridges_export_as_csv, name='fridges_export_as_csv'),
     path('fridges/export_as_pdf', views.fridges_export_as_pdf, name='fridges_export_as_pdf'),

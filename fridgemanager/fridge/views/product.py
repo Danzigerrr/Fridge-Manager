@@ -7,7 +7,6 @@ from django.core.paginator import Paginator
 
 def product_list(request):
     products_in_database = Product.objects.all()
-    # set up pagination
     p = Paginator(products_in_database, 2)  # 2nd arg --> objects per page
     page = request.GET.get('page')
     products_to_show = p.get_page(page)
@@ -31,13 +30,11 @@ def product_add(request):
                   {'form': form, 'submitted': submitted})
 
 
-# fridge_id comes from the url
 def product_detail(request, product_id):
     product = Product.objects.get(pk=product_id)
     return render(request, 'product/product_details.html', {'product': product})
 
 
-# product_id comes from the url
 def product_update(request, product_id):
     product = Product.objects.get(pk=product_id)
     form = ProductForm(request.POST or None, instance=product)
@@ -50,7 +47,6 @@ def product_update(request, product_id):
                    "form": form})
 
 
-# product_id comes from the url
 def product_delete(request, product_id):
     product = Product.objects.get(pk=product_id)
     product.delete()

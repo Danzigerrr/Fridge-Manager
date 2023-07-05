@@ -1,10 +1,10 @@
 {% extends 'base.html' %}
 
 {% block content %}
+    {% if user.is_authenticated %}
+        <h1>PRODUCT DETAILS PAGE</h1>
 
-    <h1>PRODUCT DETAILS PAGE</h1>
-
-    <h2>Product with id "{{ product.id }}":</h2>
+        <h2>Product with id "{{ product.id }}":</h2>
 
             <div class="card">
               <div class="card-header">
@@ -22,6 +22,8 @@
                   <!--                <a href="#" class="btn btn-primary">Go somewhere</a>-->
               </div>
             </div>
-            <br/>
-
+        <br/>
+    {% else %}
+        {% include 'no_access_without_login_info.html' %}
+    {% endif %}
 {% endblock %}

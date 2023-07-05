@@ -6,7 +6,7 @@ from .models import Fridge
 
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ('name', 'expire_date', 'amount', 'amount_unit')  # columns in admin view
+    list_display = ('name', 'expire_date', 'amount', 'fridge')  # columns in admin view
     ordering = ('name',)  # sorting; this comma must be here!
     search_fields = ['name']
 

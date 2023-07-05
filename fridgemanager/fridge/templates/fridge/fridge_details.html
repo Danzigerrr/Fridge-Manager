@@ -1,10 +1,10 @@
 {% extends 'base.html' %}
 
 {% block content %}
+    {% if user.is_authenticated %}
+        <h1>FRIDGE DETAILS PAGE</h1>
 
-    <h1>FRIDGE DETAILS PAGE</h1>
-
-    <h2>Fridge with id "{{ fridge.id }}":</h2>
+        <h2>Fridge with id "{{ fridge.id }}":</h2>
 
             <div class="card">
               <div class="card-header">
@@ -23,5 +23,8 @@
               </div>
             </div>
             <br/>
+    {% else %}
+        {% include 'no_access_without_login_info.html' %}
+    {% endif %}
 
 {% endblock %}

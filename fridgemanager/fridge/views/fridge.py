@@ -7,6 +7,7 @@ import io
 from reportlab.pdfgen import canvas
 from reportlab.lib.units import inch
 from reportlab.lib.pagesizes import letter
+from django.core.paginator import Paginator
 
 
 # generate pdf file
@@ -108,13 +109,11 @@ def fridge_list(request):
     return render(request, 'fridge/fridge_list.html', {'fridges': fridges})
 
 
-# fridge_id comes from the url
 def fridge_detail(request, fridge_id):
     fridge = Fridge.objects.get(pk=fridge_id)
     return render(request, 'fridge/fridge_details.html', {'fridge': fridge})
 
 
-# fridge_id comes from the url
 def fridge_update(request, fridge_id):
     fridge = Fridge.objects.get(pk=fridge_id)
     form = FridgeForm(request.POST or None, instance=fridge)
@@ -127,8 +126,19 @@ def fridge_update(request, fridge_id):
                    "form": form})
 
 
-# product_id comes from the url
 def fridge_delete(request, fridge_id):
     fridge = Fridge.objects.get(pk=fridge_id)
     fridge.delete()
     return redirect('fridge_list')
+
+
+def fridge_products(request, fridge_id):
+    fridge = Fridge.objects.get(pk=fridge_id)
+    products_in_database = Product.objects.filter(fridge=fridge)
+
+    p = Paginator(products_in_database, 2)  # 2nd arg --> objects per page
+    page = request.GET.get('page')
+    products_to_show = p.get_page(page)
+
+    return render(request, 'product/products_list.html',
+                  {'products': products_to_show})
