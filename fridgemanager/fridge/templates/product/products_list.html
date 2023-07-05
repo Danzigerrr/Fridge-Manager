@@ -4,7 +4,7 @@
 		<h1>PRODUCTS PAGE</h1>
 		{% if products|length > 1 %}
 			<h2>Products:</h2>
-			<h3>Number of products: {{ products|length }}</h3>
+			<h3>Number of products: {{ products_len }}</h3>
 				{% for product in products %}
 				<div class="card">
 					<div class="card-header">

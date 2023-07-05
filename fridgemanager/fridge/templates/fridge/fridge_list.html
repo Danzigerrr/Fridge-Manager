@@ -3,6 +3,7 @@
 {% block content %}
     {% if user.is_authenticated %}
         <h1>FRIDGES PAGE</h1>
+
             <a href="{% url 'fridges_export_as_text' %}" class="btn btn-info btn-sm">Export as TEXT file</a>
             <a href="{% url 'fridges_export_as_csv' %}" class="btn btn-info btn-sm">Export as CSV file</a>
             <a href="{% url 'fridges_export_as_pdf' %}" class="btn btn-info btn-sm">Export as PDF file</a>
@@ -18,16 +19,20 @@
               </thead>
             <tbody>
                 {% for fridge in fridges %}
-                    <tr>
-                        <td> <strong>{{ fridge.id }} </strong> </td>
-                        <td> <strong>{{ fridge.name }} </strong> </td>
-                        <td>
-                            <a href="{% url 'fridge_update' fridge.id %}" class="btn btn-secondary btn-sm">Update</a>
-                            <a href="{% url 'fridge_delete' fridge.id %}" class="btn btn-danger btn-sm">Delete</a>
-                            <a href="{% url 'fridge_detail' fridge.id %}" class="btn btn-primary btn-sm">Details</a>
-                            <a href="{% url 'fridge_products' fridge.id %}" class="btn btn-info btn-sm">Products</a>
-                        </td>
-                    </tr>
+                    {% for owner in fridge.owners.all %}
+                        {% if user == owner %}
+                            <tr>
+                                <td> <strong>{{ fridge.id }} </strong> </td>
+                                <td> <strong>{{ fridge.name }} </strong> </td>
+                                <td>
+                                    <a href="{% url 'fridge_update' fridge.id %}" class="btn btn-secondary btn-sm">Update</a>
+                                    <a href="{% url 'fridge_delete' fridge.id %}" class="btn btn-danger btn-sm">Delete</a>
+                                    <a href="{% url 'fridge_detail' fridge.id %}" class="btn btn-primary btn-sm">Details</a>
+                                    <a href="{% url 'fridge_products' fridge.id %}" class="btn btn-info btn-sm">Products</a>
+                                </td>
+                            </tr>
+                        {% endif %}
+                    {% endfor %}
                 {% endfor %}
             </tbody>
 

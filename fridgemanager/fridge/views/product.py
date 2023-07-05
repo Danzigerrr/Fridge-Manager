@@ -12,18 +12,18 @@ def product_list(request):
     products_to_show = p.get_page(page)
 
     return render(request, 'product/products_list.html',
-                  {'products': products_to_show})
+                  {'products': products_to_show, 'products_len': len(products_in_database)})
 
 
 def product_add(request):
     submitted = False
     if request.method == "POST":
-        form = ProductForm(request.POST)
+        form = ProductForm(request.user, request.POST)
         if form.is_valid():
             form.save()
             return HttpResponseRedirect('/products/add?submitted=True')
     else:
-        form = ProductForm
+        form = ProductForm(request.user)
         if 'submitted' in request.GET:
             submitted = True
     return render(request, 'product/product_add.html',

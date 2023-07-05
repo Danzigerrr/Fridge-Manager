@@ -22,8 +22,7 @@ class FridgeForm(ModelForm):
 
 
 class ProductForm(forms.ModelForm):
-    # TODO: get only fridges available for this suer
-    fridge = forms.ModelChoiceField(queryset=Fridge.objects.all(), empty_label=None, widget=forms.Select(attrs={'class': 'form-control'}))
+    # TODO: get only fridges available for this user
     amount_unit = forms.ChoiceField(choices=Product.AMOUNT_UNIT_VALUES, widget=forms.Select(attrs={'class': 'form-control'}))
 
     class Meta:
@@ -34,7 +33,7 @@ class ProductForm(forms.ModelForm):
             'name': '',
             'expire_date': 'YYYY-MM-DD HH:MM:SS',
             'amount': '',
-            'amount_unit': '',
+            'amount_unit': ' ',
             'description': '',
             'fridge': '',
         }
@@ -48,3 +47,7 @@ class ProductForm(forms.ModelForm):
             'description': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Product description'}),
             'fridge': forms.Select(attrs={'class': 'form-control'}),
         }
+
+    def __init__(self, user, *args, **kwargs):
+        super(ProductForm, self).__init__(*args, **kwargs)
+        self.fields['fridge'].queryset = Fridge.objects.filter(owners=user)

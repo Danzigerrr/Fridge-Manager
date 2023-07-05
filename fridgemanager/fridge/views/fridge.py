@@ -94,7 +94,9 @@ def fridge_add(request):
     if request.method == "POST":
         form = FridgeForm(request.POST)
         if form.is_valid():
-            form.save()
+            fridge = form.save(commit=False)
+            fridge.save()
+            fridge.owners.set([request.user])
             return HttpResponseRedirect('/fridges/add?submitted=True')
     else:
         form = FridgeForm
@@ -141,4 +143,4 @@ def fridge_products(request, fridge_id):
     products_to_show = p.get_page(page)
 
     return render(request, 'product/products_list.html',
-                  {'products': products_to_show})
+                  {'products': products_to_show, 'products_len': len(products_in_database)})
