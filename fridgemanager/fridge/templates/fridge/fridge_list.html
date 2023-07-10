@@ -14,6 +14,7 @@
                 <tr>
                   <th scope="col">Id</th>
                   <th scope="col">Name</th>
+                  <th scope="col">Number of products</th>
                   <th scope="col">Actions</th>
                 </tr>
               </thead>
@@ -24,6 +25,7 @@
                             <tr>
                                 <td> <strong>{{ fridge.id }} </strong> </td>
                                 <td> <strong>{{ fridge.name }} </strong> </td>
+                                <td> <strong>{{ fridge.num_products }} </strong> </td>
                                 <td>
                                     <a href="{% url 'fridge_update' fridge.id %}" class="btn btn-secondary btn-sm">Update</a>
                                     <a href="{% url 'fridge_delete' fridge.id %}" class="btn btn-danger btn-sm">Delete</a>

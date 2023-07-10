@@ -2,19 +2,9 @@ from django.db import models
 from django.contrib.auth.models import User
 
 
-class FridgeUser(models.Model):
-    first_name = models.CharField(max_length=50)
-    last_name = models.CharField(max_length=50)
-    email = models.EmailField('User email', max_length=100)
-    created_date = models.DateTimeField('Registration date in the system', auto_now_add=True)
-
-    def __str__(self):
-        return self.first_name + ' ' + self.last_name
-
-
 class Fridge(models.Model):
     name = models.CharField('Fridge name', max_length=100)
-    created_date = models.DateTimeField('Registration date in the system', auto_now_add=True)
+    created_date = models.DateTimeField('Creation date in the system', auto_now_add=True)
     description = models.CharField('Details about the fridge', max_length=200, blank=True)
     owners = models.ManyToManyField(User, blank=True)  # one to many
 
@@ -54,6 +44,7 @@ class Product(models.Model):
     )
     description = models.CharField('Details about the ingredient', max_length=100, blank=True, null=True)
     fridge = models.ForeignKey(Fridge, on_delete=models.CASCADE, null=True)  # one to many
+    created_date = models.DateTimeField('Creation date in the system', auto_now_add=True)
 
     def __str__(self):
         return self.name

@@ -22,7 +22,6 @@ class FridgeForm(ModelForm):
 
 
 class ProductForm(forms.ModelForm):
-    # TODO: get only fridges available for this user
     amount_unit = forms.ChoiceField(choices=Product.AMOUNT_UNIT_VALUES, widget=forms.Select(attrs={'class': 'form-control'}))
 
     class Meta:

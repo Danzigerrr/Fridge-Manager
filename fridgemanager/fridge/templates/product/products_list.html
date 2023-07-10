@@ -2,7 +2,7 @@
 {% block content %}
 	{% if user.is_authenticated %}
 		<h1>PRODUCTS PAGE</h1>
-		{% if products|length > 1 %}
+		{% if products|length > 0 %}
 			<h2>Products:</h2>
 			<h3>Number of products: {{ products_len }}</h3>
 				{% for product in products %}

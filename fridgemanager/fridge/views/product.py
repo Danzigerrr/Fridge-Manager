@@ -3,6 +3,7 @@ from ..models import Product
 from ..forms import ProductForm
 from django.http import HttpResponseRedirect
 from django.core.paginator import Paginator
+from django.contrib import messages
 
 
 def product_list(request):
@@ -49,5 +50,12 @@ def product_update(request, product_id):
 
 def product_delete(request, product_id):
     product = Product.objects.get(pk=product_id)
-    product.delete()
+    fridge = product.fridge
+    for owner in fridge.owners.all():
+        if request.user == owner:
+            product.delete()
+            messages.success(request, 'Product deleted!')
+            return redirect('product_list')
+
+    messages.success(request, 'You are unauthorized to delete this product!')
     return redirect('product_list')

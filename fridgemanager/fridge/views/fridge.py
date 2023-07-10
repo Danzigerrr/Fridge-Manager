@@ -8,6 +8,8 @@ from reportlab.pdfgen import canvas
 from reportlab.lib.units import inch
 from reportlab.lib.pagesizes import letter
 from django.core.paginator import Paginator
+from django.db.models import Count
+from django.contrib import messages
 
 
 # generate pdf file
@@ -107,7 +109,7 @@ def fridge_add(request):
 
 
 def fridge_list(request):
-    fridges = Fridge.objects.all().order_by('name')
+    fridges = Fridge.objects.annotate(num_products=Count('product')).order_by('name')
     return render(request, 'fridge/fridge_list.html', {'fridges': fridges})
 
 
@@ -130,7 +132,13 @@ def fridge_update(request, fridge_id):
 
 def fridge_delete(request, fridge_id):
     fridge = Fridge.objects.get(pk=fridge_id)
-    fridge.delete()
+    for owner in fridge.owners.all():
+        if request.user == owner:
+            fridge.delete()
+            messages.success(request, 'Fridge deleted!')
+            return redirect('fridge_list')
+
+    messages.success(request, 'You are unauthorized to delete this fridge!')
     return redirect('fridge_list')
 
 
