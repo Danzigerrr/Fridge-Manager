@@ -4,6 +4,7 @@ from ..forms import ProductForm
 from django.http import HttpResponseRedirect
 from django.core.paginator import Paginator
 from django.contrib import messages
+from django.db.models import Q
 
 
 def product_list(request):
@@ -59,3 +60,23 @@ def product_delete(request, product_id):
 
     messages.success(request, 'You are unauthorized to delete this product!')
     return redirect('product_list')
+
+
+def products_search(request):
+    if request.method == 'POST':
+        searched = request.POST['searched']
+        # products = Product.objects.filter(name__contains=searched)  # single field of model
+        products = Product.objects.filter(
+            Q(name__contains=searched) |
+            Q(description__contains=searched) |
+            Q(amount__contains=searched) |
+            Q(amount_unit__contains=searched)
+        )
+        return render(request, 'product/products_search.html',
+                      {'searched': searched, 'products': products})
+    else:
+        return render(request, 'product/products_search.html', {})
+
+
+
+

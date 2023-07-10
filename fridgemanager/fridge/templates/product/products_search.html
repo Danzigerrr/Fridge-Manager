@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block content %}
+
+		<form method="POST" action="{% url 'product_search' %}" class="form-inline my-2 my-lg-0">
+			{% csrf_token %}
+			<input class="form-control mr-sm-2" name="searched" type="search" placeholder="Search" aria-label="Search">
+			<br/>
+			<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+		</form>
+
+		{% if searched %}
+			<h1>You searched for {{ searched }}</h1>
+			<br/>
+			{% for product in products %}
+				{{ product }}
+		<br/>
+			{% endfor %}
+		{% else %}
+			<h1>You forgot to search for the product...</h1>
+		{% endif %}
+
+
+{% endblock %}

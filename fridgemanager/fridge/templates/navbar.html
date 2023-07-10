@@ -29,9 +29,10 @@
 				<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 					<a class="dropdown-item" href="{% url 'product_list' %}">Your products</a>
 					{% if user.is_authenticated %}
-						<div class="dropdown-divider"></div>
-						<a class="dropdown-item" href="{% url 'product_add' %}">Add products</a>
+					<div class="dropdown-divider"></div>
+					<a class="dropdown-item" href="{% url 'product_add' %}">Add products</a>
 					{% endif %}
+					<a class="dropdown-item" href="{% url 'product_search' %}">Search products</a>
 				</div>
 			</li>
 			{% endif %}
