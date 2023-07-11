@@ -10,6 +10,7 @@ from reportlab.lib.pagesizes import letter
 from django.core.paginator import Paginator
 from django.db.models import Count
 from django.contrib import messages
+from django.core.exceptions import PermissionDenied
 
 
 # generate pdf file
@@ -144,11 +145,16 @@ def fridge_delete(request, fridge_id):
 
 def fridge_products(request, fridge_id):
     fridge = Fridge.objects.get(pk=fridge_id)
-    products_in_database = Product.objects.filter(fridge=fridge)
 
-    p = Paginator(products_in_database, 2)  # 2nd arg --> objects per page
+    # Check if request.user is an owner of the fridge
+    if not fridge.owners.filter(pk=request.user.pk).exists():
+        raise PermissionDenied
+
+    products = fridge.product_set.all()
+
+    p = Paginator(products, 2)  # 2nd arg --> objects per page
     page = request.GET.get('page')
     products_to_show = p.get_page(page)
 
-    return render(request, 'product/products_list.html',
-                  {'products': products_to_show, 'products_len': len(products_in_database)})
+    return render(request, 'product/product_list.html',
+                  {'products': products_to_show, 'products_len': len(products)})

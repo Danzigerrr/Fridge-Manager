@@ -50,7 +50,15 @@ class Product(models.Model):
         return self.name
 
 
+class Recipe(models.Model):
+    api_id = models.IntegerField()
+    title = models.CharField('Fridge title', max_length=100)
+    image_link = models.CharField('Link to image', max_length=300)
+    api_likes = models.IntegerField()
+    favorite_by = models.ManyToManyField(User, blank=True)
 
+    def __str__(self):
+        return self.title
 
 
 

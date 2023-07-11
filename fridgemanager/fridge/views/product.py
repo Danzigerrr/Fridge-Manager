@@ -13,7 +13,7 @@ def product_list(request):
     page = request.GET.get('page')
     products_to_show = p.get_page(page)
 
-    return render(request, 'product/products_list.html',
+    return render(request, 'product/product_list.html',
                   {'products': products_to_show, 'products_len': len(products_in_database)})
 
 
@@ -72,10 +72,10 @@ def products_search(request):
             Q(amount__contains=searched) |
             Q(amount_unit__contains=searched)
         )
-        return render(request, 'product/products_search.html',
+        return render(request, 'product/product_search.html',
                       {'searched': searched, 'products': products})
     else:
-        return render(request, 'product/products_search.html', {})
+        return render(request, 'product/product_search.html', {})
 
 
 

@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    {% if user.is_authenticated %}
+        <h1>PRODUCT DETAILS PAGE</h1>
+
+        <h2>Product with id "{{ product.id }}":</h2>
+
+            <div class="card">
+              <div class="card-header">
+                  <strong>{{ product.name }} </strong>
+              </div>
+              <div class="card-body">
+                <ul>
+                 <li>Creation date: {{ product.created_date }} </li>
+                 <li>Owners: {{ product.owners.name }} </li>
+                 <li>Description: {{ product.description }} </li>
+                    <br>
+
+                </ul>
+              </div>
+            </div>
+        <br/>
+    {% else %}
+        {% include 'no_access_without_login_info.html' %}
+    {% endif %}
+{% endblock %}

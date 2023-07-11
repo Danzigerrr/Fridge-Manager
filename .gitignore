@@ -152,3 +152,4 @@ cython_debug/
 #.idea/
 
 fridgemanager/fridge/migrations/
+fridgemanager/fridge/api_key.py

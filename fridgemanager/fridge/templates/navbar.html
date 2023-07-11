@@ -31,8 +31,21 @@
 					{% if user.is_authenticated %}
 					<div class="dropdown-divider"></div>
 					<a class="dropdown-item" href="{% url 'product_add' %}">Add products</a>
-					{% endif %}
+					<div class="dropdown-divider"></div>
 					<a class="dropdown-item" href="{% url 'product_search' %}">Search products</a>
+					{% endif %}
+				</div>
+			</li>
+			{% endif %}
+			{% if user.is_authenticated %}
+			<li class="nav-item dropdown">
+				<a class="nav-link dropdown-toggle" href="{% url 'product_list' %}" id="navbarDropdownProducts" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				Recipes
+				</a>
+				<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+					<a class="dropdown-item" href="{% url 'get_recipe_from_product_list' %}">Get recipes</a>
+					<div class="dropdown-divider"></div>
+<!--					<a class="dropdown-item" href="{% url 'product_add' %}">Add products</a>-->
 				</div>
 			</li>
 			{% endif %}
