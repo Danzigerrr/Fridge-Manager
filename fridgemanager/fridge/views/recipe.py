@@ -26,6 +26,13 @@ def get_recipes(products_names):
     return response_content
 
 
+def create_recipe_link(recipe):
+    title = recipe['title'].replace(' ', '-')
+    recipe_id = recipe['id']
+    link = f"https://spoonacular.com/{title}-{recipe_id}"
+    return link
+
+
 def get_recipe_from_product_list(request):
     # Retrieve fridges connected to the logged-in user
     fridges_of_user = Fridge.objects.filter(owners=request.user)
@@ -47,6 +54,11 @@ def get_recipe_from_product_list(request):
 
         # get recipes from api
         recipes = get_recipes(products_names)
+
+        print(type(recipes))
+        for recipe in recipes:
+            print(type(recipe))
+            recipe['recipe_link'] = create_recipe_link(recipe)
 
         p = Paginator(products, 2)  # 2nd arg --> objects per page
         page = request.GET.get('page')

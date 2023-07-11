@@ -23,21 +23,25 @@
 					</div>
 					<div class="card-body">
 						<div class="recipe-container">
-            				<div class="col-md-6">
-							<h4>Used Ingredients:</h4>
-								<ul>
-									{% for ingredient in recipe.usedIngredients %}
-									<li><strong>{{ ingredient.original }}</strong> </li>
-									{% endfor %}
-								</ul>
-							<h4>Missed Ingredients:</h4>
-								<ul>
-									{% for ingredient in recipe.missedIngredients %}
-										<li><strong>{{ ingredient.original }}</strong></li>
-									{% endfor %}
-								</ul>
+            				<div class="ingredients">
+								<h4>Used Ingredients:</h4>
+									<ul>
+										{% for ingredient in recipe.usedIngredients %}
+										<li><strong>{{ ingredient.original }}</strong> </li>
+										{% endfor %}
+									</ul>
+								<h4>Missed Ingredients:</h4>
+									<ul>
+										{% for ingredient in recipe.missedIngredients %}
+											<li><strong>{{ ingredient.original }}</strong></li>
+										{% endfor %}
+									</ul>
+								<h4>Details:</h4>
+									<p>
+										<a href="{{ recipe.recipe_link }}" target="_blank">Check the details</a>
+									</p>
 							</div>
-							<div class="col-md-5" style="text-align: center;">
+							<div class="recipe_img" >
 								<img src="{{ recipe.image }}" alt="{{ recipe.title }}" class="rounded float-right img-fluid recipe_img">
 							</div>
 						</div>
