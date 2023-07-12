@@ -24,12 +24,14 @@ def product_list(request):
 def product_add(request):
     submitted = False
     if request.method == "POST":
-        form = ProductForm(request.user, request.POST)
+        form = ProductForm(request.POST)
+
         if form.is_valid():
             form.save()
             return HttpResponseRedirect('/products/add?submitted=True')
     else:
-        form = ProductForm(request.user)
+        form = ProductForm()
+        form.fields['fridge'].queryset = Fridge.objects.filter(owners=request.user)
         if 'submitted' in request.GET:
             submitted = True
     return render(request, 'product/product_add.html',

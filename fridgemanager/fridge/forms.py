@@ -45,7 +45,3 @@ class ProductForm(forms.ModelForm):
             'description': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Product description'}),
             'fridge': forms.Select(attrs={'class': 'form-control'}),
         }
-
-    def __init__(self, user, *args, **kwargs):
-        super(ProductForm, self).__init__(*args, **kwargs)
-        self.fields['fridge'].queryset = Fridge.objects.filter(owners=user)

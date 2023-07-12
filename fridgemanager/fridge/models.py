@@ -35,7 +35,7 @@ class Product(models.Model):
     ]
 
     name = models.CharField('Product name', max_length=100)
-    expire_date = models.DateTimeField('Expiration date of the product')
+    expire_date = models.DateField('Expiration date of the product')
     amount = models.FloatField('Amount of the product stored')
     amount_unit = models.CharField(
         max_length=32,
