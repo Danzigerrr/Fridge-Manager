@@ -20,4 +20,6 @@ urlpatterns = [
     path('fridges/export_as_csv', views.fridges_export_as_csv, name='fridges_export_as_csv'),
     path('fridges/export_as_pdf', views.fridges_export_as_pdf, name='fridges_export_as_pdf'),
 
+    path('user_dashboard', views.user_dashboard, name='user_dashboard'),
+
 ]
