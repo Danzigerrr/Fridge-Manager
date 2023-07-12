@@ -9,7 +9,6 @@ from django.db.models import Q
 
 def product_list(request):
     fridges_of_user = Fridge.objects.filter(owners=request.user)
-    fridge_count = fridges_of_user.count()
 
     # Retrieve products from all fridges of the user
     products_of_user = Product.objects.filter(fridge__in=fridges_of_user)
@@ -45,13 +44,13 @@ def product_detail(request, product_id):
 def product_update(request, product_id):
     product = Product.objects.get(pk=product_id)
     form = ProductForm(request.POST or None, instance=product)
+    form.fields['fridge'].queryset = Fridge.objects.filter(owners=request.user)
+
     if form.is_valid():
         form.save()
         return redirect('product_list')
 
-    return render(request, 'product/product_update.html',
-                  {'product': product,
-                   "form": form})
+    return render(request, 'product/product_update.html', {'product': product, 'form': form})
 
 
 def product_delete(request, product_id):

@@ -23,6 +23,7 @@ class FridgeForm(ModelForm):
 
 class ProductForm(forms.ModelForm):
     amount_unit = forms.ChoiceField(choices=Product.AMOUNT_UNIT_VALUES, widget=forms.Select(attrs={'class': 'form-control'}))
+    expire_date = forms.DateField(widget=forms.widgets.DateInput(attrs={'class': 'form-control', 'type': 'date'}))
 
     class Meta:
         model = Product
@@ -40,9 +41,7 @@ class ProductForm(forms.ModelForm):
         # widgets are used for styling
         widgets = {
             'name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Product name'}),
-            'expire_date': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Expiration date'}),
             'amount': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Amount'}),
-            'amount_unit': forms.TextInput(attrs={'class': 'form-control'}),
             'description': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Product description'}),
             'fridge': forms.Select(attrs={'class': 'form-control'}),
         }

@@ -8,7 +8,7 @@
 				<div class="card">
 					<div class="card-header">
 						<strong><h2>{{ recipe.title }}</h2></strong>
-						<span class="badge badge-success float-left">Likes: {{ recipe.api_likes }}</span>
+						<span class="badge badge-success float-left">Likes: {{ recipe.likes }}</span>
 					</div>
 					<div class="card-body">
 						<div class="recipe-container">
@@ -27,7 +27,7 @@
 									</ul>
 								<h4>Details:</h4>
 									<p>
-										<a href="{{ recipe.recipe_link }}" target="_blank">Check the details</a>
+										<a href="{{ recipe.recipe_link }}" target="_blank" class="button_link btn-info">Check the details</a>
 									</p>
 								<h4>Save this recipe:</h4>
 									<form method="POST" action="{% url 'recipe_save' %}">
@@ -37,7 +37,7 @@
 											<input type="hidden" name="recipe_link" value="{{ recipe.recipe_link }}">
 											<input type="hidden" name="recipe_image_link" value="{{ recipe.image }}">
 											<input type="hidden" name="recipe_api_likes" value="{{ recipe.likes }}">
-										<button type="submit">Save this Recipe</button>
+										<button type="submit" class="button_link btn-success">Save this Recipe</button>
 									</form>
 
 							</div>

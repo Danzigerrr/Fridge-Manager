@@ -15,12 +15,12 @@
             				<div class="ingredients">
 								<h4>Details:</h4>
 								<p>
-									<a href="{{ recipe.link }}" target="_blank">Check the details</a>
+										<a href="{{ recipe.recipe_link }}" target="_blank" class="button_link btn-info">Check the details</a>
 								</p>
 								<form method="POST" action="{% url 'recipe_unsave' %}">
 									{% csrf_token %}
 									<input type="hidden" name="recipe_id" value="{{ recipe.id }}">
-									<button type="submit">Unsave this Recipe</button>
+									<button type="submit" class="button_link btn-danger">Unsave this Recipe</button>
 								</form>
 							</div>
 							<div class="recipe_img" >
