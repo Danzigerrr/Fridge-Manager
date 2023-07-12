@@ -5,10 +5,15 @@ from ..models import Product, Fridge, Recipe
 
 
 def user_dashboard(request):
+    fridges = Fridge.objects.filter(owners=request.user)
+    fridge_count = fridges.count()
 
-    product_count = Product.objects.all().count()
-    fridge_count = Fridge.objects.all().count()
-    recipe_count = Recipe.objects.all().count()
+    # Retrieve products from all fridges of the user
+    products = Product.objects.filter(fridge__in=fridges)
+
+    product_count = products.count()
+
+    recipe_count = Recipe.objects.filter(saved_by=request.user).count()
 
     context = {'product_count': product_count,
                'fridge_count': fridge_count,

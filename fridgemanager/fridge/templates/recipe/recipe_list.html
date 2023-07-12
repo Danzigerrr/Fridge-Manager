@@ -29,7 +29,7 @@
 									<p>
 										<a href="{{ recipe.recipe_link }}" target="_blank">Check the details</a>
 									</p>
-								<h4>Save this recipe with id {{ recipe.id }}:</h4>
+								<h4>Save this recipe:</h4>
 									<form method="POST" action="{% url 'recipe_save' %}">
 										{% csrf_token %}
 											<input type="hidden" name="recipe_id" value="{{ recipe.id }}">

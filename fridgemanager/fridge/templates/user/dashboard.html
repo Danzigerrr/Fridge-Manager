@@ -22,7 +22,7 @@
               <td>{{ product_count }}</td>
               <td>
                   <form action="{% url 'product_list' %}">
-                      <button type="submit" class="btn btn-secondary">See all products</button>
+                      <button type="submit" class="btn btn-secondary">See your products</button>
                   </form>
               </td>
             </tr>
@@ -32,17 +32,17 @@
               <td>{{ fridge_count }}</td>
               <td>
                   <form action="{% url 'fridge_list' %}">
-                      <button type="submit" class="btn btn-secondary">See all fridges</button>
+                      <button type="submit" class="btn btn-secondary">See your fridges</button>
                   </form>
               </td>
             </tr>
             <tr>
               <th scope="row">2</th>
-              <td>Recipies</td>
+              <td>Saved Recipies</td>
               <td>{{ recipe_count }}</td>
               <td>
                   <form action="{% url 'recipe_list' %}">
-                      <button type="submit" class="btn btn-secondary">See all recipies</button>
+                      <button type="submit" class="btn btn-secondary">See your recipies</button>
                   </form>
               </td>
             </tr>

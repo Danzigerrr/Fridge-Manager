@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from ..models import Product
+from ..models import Product, Fridge
 from ..forms import ProductForm
 from django.http import HttpResponseRedirect
 from django.core.paginator import Paginator
@@ -8,13 +8,18 @@ from django.db.models import Q
 
 
 def product_list(request):
-    products_in_database = Product.objects.all()
-    p = Paginator(products_in_database, 2)  # 2nd arg --> objects per page
+    fridges_of_user = Fridge.objects.filter(owners=request.user)
+    fridge_count = fridges_of_user.count()
+
+    # Retrieve products from all fridges of the user
+    products_of_user = Product.objects.filter(fridge__in=fridges_of_user)
+
+    p = Paginator(products_of_user, 2)  # 2nd arg --> objects per page
     page = request.GET.get('page')
     products_to_show = p.get_page(page)
 
     return render(request, 'product/product_list.html',
-                  {'products': products_to_show, 'products_len': len(products_in_database)})
+                  {'products': products_to_show, 'products_len': len(products_of_user)})
 
 
 def product_add(request):

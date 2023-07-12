@@ -110,7 +110,9 @@ def fridge_add(request):
 
 
 def fridge_list(request):
-    fridges = Fridge.objects.annotate(num_products=Count('product')).order_by('name')
+    fridges_of_user = Fridge.objects.filter(owners=request.user)
+    fridges = fridges_of_user.annotate(num_products=Count('product')).order_by('name')
+
     return render(request, 'fridge/fridge_list.html', {'fridges': fridges})
 
 
