@@ -1,6 +1,6 @@
 import json
 
-from django.shortcuts import render, redirect
+from django.shortcuts import get_object_or_404, render, redirect
 from ..models import Recipe, Product, Fridge
 from ..api_key import api_key_value
 from django.http import HttpResponseRedirect
@@ -40,7 +40,6 @@ def get_recipe_from_product_list(request):
     # Retrieve products from the fridges of the user
     products = Product.objects.filter(fridge__in=fridges_of_user)
 
-    print(products)
     if len(products) == 0:
         return render(request, 'recipe/recipe_list.html',
                       {'products': products})
@@ -50,14 +49,12 @@ def get_recipe_from_product_list(request):
             products_names.append(product.name)
 
         products_names = ','.join([name + '+' for name in products_names])[:-1]
-        print(products_names)
 
         # get recipes from api
         recipes = get_recipes(products_names)
 
-        print(type(recipes))
         for recipe in recipes:
-            print(type(recipe))
+            # print(recipe)
             recipe['recipe_link'] = create_recipe_link(recipe)
 
         p = Paginator(products, 2)  # 2nd arg --> objects per page
@@ -65,3 +62,49 @@ def get_recipe_from_product_list(request):
         products_to_show = p.get_page(page)
         return render(request, 'recipe/recipe_list.html',
                       {'products': products_to_show, 'recipes': recipes})
+
+
+def recipe_saved_list(request):
+    recipes = Recipe.objects.filter(saved_by=request.user)
+
+    context = {'recipes': recipes}
+    return render(request, 'recipe/recipe_saved.html',
+                  context)
+
+
+def recipe_save(request):
+    if request.method == 'POST':
+        recipe_title = request.POST.get('recipe_title')
+        recipe_image_link = request.POST.get('recipe_image_link')
+        recipe_link = request.POST.get('recipe_link')
+        recipe_id = request.POST.get('recipe_id')
+        recipe_api_likes = request.POST.get('recipe_api_likes')
+
+        recipe = Recipe(id=recipe_id,
+                        title=recipe_title,
+                        link=recipe_link,
+                        image_link=recipe_image_link,
+                        api_likes=recipe_api_likes)
+        recipe.save()
+
+        current_user = request.user
+        recipe.saved_by.add(request.user)
+
+        messages.success(request, 'Recipe saved successfully!')
+        return redirect('recipe_list')
+
+
+def recipe_unsave(request):
+    if request.method == 'POST':
+        recipe_id = request.POST.get('recipe_id')
+        recipe = get_object_or_404(Recipe, id=recipe_id)
+        recipe.saved_by.remove(request.user)  # remove the connection to this user
+
+        # if no users saved this recipe, delete it from database
+        counter = recipe.saved_by.count()
+        if counter == 0:
+            recipe.delete()
+
+        messages.success(request, 'Recipe unsaved successfully!')
+        return redirect('recipe_list')
+

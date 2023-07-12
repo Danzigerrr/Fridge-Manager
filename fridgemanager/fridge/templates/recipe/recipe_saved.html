@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% block content %}
+	{% if user.is_authenticated %}
+		<h1>Recipe list PAGE</h1>
+
+			{% for recipe in recipes %}
+
+				<div class="card">
+					<div class="card-header">
+						<strong><h2>{{ recipe.title }}</h2></strong>
+						<span class="badge badge-success float-left">Likes: {{ recipe.api_likes }}</span>
+					</div>
+					<div class="card-body">
+						<div class="recipe-container">
+            				<div class="ingredients">
+								<h4>Details:</h4>
+								<p>
+									<a href="{{ recipe.link }}" target="_blank">Check the details</a>
+								</p>
+								<form method="POST" action="{% url 'recipe_unsave' %}">
+									{% csrf_token %}
+									<input type="hidden" name="recipe_id" value="{{ recipe.id }}">
+									<button type="submit">Unsave this Recipe</button>
+								</form>
+							</div>
+							<div class="recipe_img" >
+								<img src="{{ recipe.image_link }}" alt="{{ recipe.title }}" class="rounded float-right img-fluid recipe_img">
+							</div>
+
+						</div>
+					</div>
+				</div>
+				<br/>
+
+			{% endfor %}
+
+
+	{% else %}
+		{% include 'no_access_without_login_info.html' %}
+	{% endif %}
+{% endblock %}

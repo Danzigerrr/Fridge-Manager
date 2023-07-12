@@ -1,6 +1,7 @@
 from django.contrib import admin
 from .models import Product
 from .models import Fridge
+from .models import Recipe
 
 
 @admin.register(Product)
@@ -17,3 +18,13 @@ class FridgeAdmin(admin.ModelAdmin):
     list_filter = ('name', 'created_date')
     ordering = ('name',)  # default sort order
     search_fields = ['name']
+
+
+@admin.register(Recipe)
+class RecipeAdmin(admin.ModelAdmin):
+    fields = ('title', 'image_link', 'link', 'api_likes', 'saved_by')  # creating page
+    list_display = ('id', 'title',)  # main page view
+    list_filter = ('title',)
+    ordering = ('title',)  # default sort order
+    search_fields = ['title']
+

@@ -1,25 +1,14 @@
 {% extends 'base.html' %}
 {% block content %}
 	{% if user.is_authenticated %}
-		<h1>PRODUCTS PAGE</h1>
-		{% if products|length > 0 %}
-			<h3>Number of products used for search: {{ products|length  }}</h3>
-			<h2>Products used for search:</h2>
-				<ul>
-					{% for product in products %}
-						<li>{{ product.name }} </li>
-					{% endfor %}
-				</ul>
-
-			<hr>
-		{% include 'recipe/recipe_list_paginator.html' %}
+		<h1>Recipe list PAGE</h1>
 
 			{% for recipe in recipes %}
 
 				<div class="card">
 					<div class="card-header">
 						<strong><h2>{{ recipe.title }}</h2></strong>
-						<span class="badge badge-success float-left">Likes: {{ recipe.likes }}</span>
+						<span class="badge badge-success float-left">Likes: {{ recipe.api_likes }}</span>
 					</div>
 					<div class="card-body">
 						<div class="recipe-container">
@@ -40,6 +29,17 @@
 									<p>
 										<a href="{{ recipe.recipe_link }}" target="_blank">Check the details</a>
 									</p>
+								<h4>Save this recipe with id {{ recipe.id }}:</h4>
+									<form method="POST" action="{% url 'recipe_save' %}">
+										{% csrf_token %}
+											<input type="hidden" name="recipe_id" value="{{ recipe.id }}">
+											<input type="hidden" name="recipe_title" value="{{ recipe.title }}">
+											<input type="hidden" name="recipe_link" value="{{ recipe.recipe_link }}">
+											<input type="hidden" name="recipe_image_link" value="{{ recipe.image }}">
+											<input type="hidden" name="recipe_api_likes" value="{{ recipe.likes }}">
+										<button type="submit">Save this Recipe</button>
+									</form>
+
 							</div>
 							<div class="recipe_img" >
 								<img src="{{ recipe.image }}" alt="{{ recipe.title }}" class="rounded float-right img-fluid recipe_img">
@@ -50,11 +50,6 @@
 				<br/>
 
 			{% endfor %}
-
-
-		{% else %}
-			<h2>No products currently available. Click <a href="{% url 'product_add' %}">here</a> to add products.</h2>
-		{% endif %}
 
 
 	{% else %}

@@ -20,6 +20,9 @@ urlpatterns = [
     path('fridges/export_as_csv', views.fridges_export_as_csv, name='fridges_export_as_csv'),
     path('fridges/export_as_pdf', views.fridges_export_as_pdf, name='fridges_export_as_pdf'),
 
+    path('recipes/', views.recipe_saved_list, name='recipe_list'),
+    path('recipes/save', views.recipe_save, name='recipe_save'),
+    path('recipes/unsave', views.recipe_unsave, name='recipe_unsave'),
     path('recipes/search_by_ingredients', views.get_recipe_from_product_list, name='get_recipe_from_product_list'),
     path('user_dashboard', views.user_dashboard, name='user_dashboard'),
 ]

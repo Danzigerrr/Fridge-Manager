@@ -36,6 +36,16 @@
                   </form>
               </td>
             </tr>
+            <tr>
+              <th scope="row">2</th>
+              <td>Recipies</td>
+              <td>{{ recipe_count }}</td>
+              <td>
+                  <form action="{% url 'recipe_list' %}">
+                      <button type="submit" class="btn btn-secondary">See all recipies</button>
+                  </form>
+              </td>
+            </tr>
           </tbody>
         </table>
 

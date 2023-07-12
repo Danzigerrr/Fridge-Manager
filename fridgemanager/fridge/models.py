@@ -51,11 +51,14 @@ class Product(models.Model):
 
 
 class Recipe(models.Model):
-    api_id = models.IntegerField()
-    title = models.CharField('Fridge title', max_length=100)
+    title = models.CharField('Recipe title', max_length=100)
     image_link = models.CharField('Link to image', max_length=300)
-    api_likes = models.IntegerField()
-    favorite_by = models.ManyToManyField(User, blank=True)
+    link = models.CharField('Link to recipe', max_length=300)
+    api_likes = models.IntegerField('Likes by API users', null=True)
+
+    # if the recipe is saved by any user, do not delete it from the database
+    if_saved = models.BooleanField(default=False)
+    saved_by = models.ManyToManyField(User, blank=True)
 
     def __str__(self):
         return self.title
