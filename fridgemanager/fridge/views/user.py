@@ -1,7 +1,5 @@
-from django.core.paginator import Paginator
-from django.shortcuts import render
-
 from ..models import Product, Fridge, Recipe
+from django.shortcuts import render
 
 
 def user_dashboard(request):
@@ -19,4 +17,5 @@ def user_dashboard(request):
                'fridge_count': fridge_count,
                'recipe_count': recipe_count}
     return render(request, 'user/dashboard.html', context)
+
 

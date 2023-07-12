@@ -16,6 +16,8 @@ urlpatterns = [
     path('fridges/<fridge_id>/update', views.fridge_update, name='fridge_update'),
     path('fridges/<fridge_id>/delete', views.fridge_delete, name='fridge_delete'),
     path('fridges/<fridge_id>/products', views.fridge_products, name='fridge_products'),
+    path('fridges/invitation/<str:token>', views.display_fridge_invitation, name='display_fridge_invitation'),
+    path('fridges/invitation/<str:invitation_token>/accept', views.accept_invitation_link, name='accept_invitation_link'),
     path('fridges/export_as_text', views.fridges_export_as_text, name='fridges_export_as_text'),
     path('fridges/export_as_csv', views.fridges_export_as_csv, name='fridges_export_as_csv'),
     path('fridges/export_as_pdf', views.fridges_export_as_pdf, name='fridges_export_as_pdf'),
@@ -24,5 +26,7 @@ urlpatterns = [
     path('recipes/save', views.recipe_save, name='recipe_save'),
     path('recipes/unsave', views.recipe_unsave, name='recipe_unsave'),
     path('recipes/search_by_ingredients', views.get_recipe_from_product_list, name='get_recipe_from_product_list'),
+
     path('user_dashboard', views.user_dashboard, name='user_dashboard'),
+
 ]

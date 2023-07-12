@@ -2,7 +2,7 @@
 
 {% block content %}
     {% if user.is_authenticated %}
-        <h1>FRIDGE DETAILS PAGE</h1>
+        <h1>FRIDGE INVITATION PAGE</h1>
 
         <h2>Fridge with id "{{ fridge.id }}":</h2>
 
@@ -17,7 +17,12 @@
                  <li>Description: {{ fridge.description }} </li>
                  <li>Invitation link: {{ fridge.invitation_link }} </li>
                     <br>
-                 <a href="{% url 'fridge_update' fridge.id %}" class="btn btn-secondary btn-sm">Update this fridge</a>
+
+                    <h2>Do you accept the invitation?</h2>
+                     <a href="{% url 'fridge_list' %}" class="btn btn-danger btn-sm">No</a>
+                    <br>
+                     <a href="{% url 'accept_invitation_link' fridge.invitation_token %}" class="btn btn-success btn-sm">Yes</a>
+
 
                 </ul>
                   <!--                <a href="#" class="btn btn-primary">Go somewhere</a>-->

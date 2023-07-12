@@ -1,4 +1,3 @@
-from django.shortcuts import render, redirect
 from ..models import Product, Fridge
 from ..forms import FridgeForm
 from django.http import HttpResponseRedirect, HttpResponse, FileResponse
@@ -11,6 +10,8 @@ from django.core.paginator import Paginator
 from django.db.models import Count
 from django.contrib import messages
 from django.core.exceptions import PermissionDenied
+from django.shortcuts import render, redirect, get_object_or_404
+import secrets
 
 
 # generate pdf file
@@ -109,6 +110,21 @@ def fridge_add(request):
                   {'form': form, 'submitted': submitted})
 
 
+def generate_invitation_link(request, fridge_id):
+    fridge = Fridge.objects.get(pk=fridge_id)
+    invitation_link = request.build_absolute_uri(f'/fridges/invitation/{fridge.invitation_token}')
+
+    return invitation_link
+
+
+def accept_invitation_link(request, invitation_token):
+    fridge = Fridge.objects.get(invitation_token=invitation_token)
+    fridge.owners.add(request.user)
+
+    messages.success(request, 'Invitation to fridge accepted!')
+    return redirect('fridge_list')
+
+
 def fridge_list(request):
     fridges_of_user = Fridge.objects.filter(owners=request.user)
     fridges = fridges_of_user.annotate(num_products=Count('product')).order_by('name')
@@ -116,8 +132,15 @@ def fridge_list(request):
     return render(request, 'fridge/fridge_list.html', {'fridges': fridges})
 
 
+def display_fridge_invitation(request, token):
+    fridge = Fridge.objects.get(invitation_token=token)
+
+    return render(request, 'fridge/display_fridge_invitation.html', {'fridge': fridge})
+
+
 def fridge_detail(request, fridge_id):
     fridge = Fridge.objects.get(pk=fridge_id)
+    fridge.invitation_link = generate_invitation_link(request, fridge.id)
     return render(request, 'fridge/fridge_details.html', {'fridge': fridge})
 
 

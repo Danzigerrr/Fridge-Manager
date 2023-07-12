@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+import uuid
 
 
 class Fridge(models.Model):
@@ -7,6 +8,7 @@ class Fridge(models.Model):
     created_date = models.DateTimeField('Creation date in the system', auto_now_add=True)
     description = models.CharField('Details about the fridge', max_length=200, blank=True)
     owners = models.ManyToManyField(User, blank=True)  # one to many
+    invitation_token = models.UUIDField(default=uuid.uuid4)
 
     def __str__(self):
         return self.name
