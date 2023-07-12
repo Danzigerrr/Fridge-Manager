@@ -3,11 +3,10 @@ import json
 from django.shortcuts import get_object_or_404, render, redirect
 from ..models import Recipe, Product, Fridge
 from ..api_key import api_key_value
-from django.http import HttpResponseRedirect
 from django.core.paginator import Paginator
 from django.contrib import messages
-from django.db.models import Q
 import requests
+from django.db.models import Count
 
 
 def get_recipes(products_names):
@@ -65,8 +64,7 @@ def get_recipe_from_product_list(request):
 
 
 def recipe_saved_list(request):
-    recipes = Recipe.objects.filter(saved_by=request.user)
-
+    recipes = Recipe.objects.filter(saved_by=request.user).annotate(num_saved_users=Count('saved_by'))
     context = {'recipes': recipes}
     return render(request, 'recipe/recipe_saved.html',
                   context)
@@ -87,7 +85,6 @@ def recipe_save(request):
                         api_likes=recipe_api_likes)
         recipe.save()
 
-        current_user = request.user
         recipe.saved_by.add(request.user)
 
         messages.success(request, 'Recipe saved successfully!')

@@ -8,7 +8,13 @@
 				<div class="card">
 					<div class="card-header">
 						<strong><h2>{{ recipe.title }}</h2></strong>
-						<span class="badge badge-success float-left">Likes: {{ recipe.api_likes }}</span>
+						<span class="badge badge-success float-left">
+							{% if recipe.num_saved_users == 1 %}
+								Saved by {{ recipe.num_saved_users }} user
+							{% else %}
+								Saved by {{ recipe.num_saved_users }} users
+							{% endif %}
+						</span>
 					</div>
 					<div class="card-body">
 						<div class="recipe-container">
