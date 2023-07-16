@@ -1,6 +1,17 @@
 {% extends 'base.html' %}
 
 {% block content %}
+    <script>
+        function copyToClipboard(element) {
+          var $temp = $("<input>");
+          $("body").append($temp);
+          $temp.val($(element).text()).select();
+          document.execCommand("copy");
+          $temp.remove();
+          alert("Link has been copied!");
+        }
+    </script>
+
     {% if user.is_authenticated %}
         <h1>FRIDGE DETAILS PAGE</h1>
 
@@ -15,7 +26,13 @@
                  <li>Creation date: {{ fridge.created_date }} </li>
                  <li>Owners: {{ fridge.owners.name }} </li>
                  <li>Description: {{ fridge.description }} </li>
-                 <li>Invitation link: {{ fridge.invitation_link }} </li>
+                 <li>
+                     Invitation link:
+                     <p id="invitationLinkFridge">{{ fridge.invitation_link }}</p>
+
+                        <button onclick="copyToClipboard('#invitationLinkFridge')" class="btn btn-info">Copy invitation link</button>
+
+                 </li>
                     <br>
                  <a href="{% url 'fridge_update' fridge.id %}" class="btn btn-secondary btn-sm">Update this fridge</a>
 
@@ -27,5 +44,7 @@
     {% else %}
         {% include 'no_access_without_login_info.html' %}
     {% endif %}
+
+
 
 {% endblock %}
