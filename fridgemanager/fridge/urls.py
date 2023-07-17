@@ -27,6 +27,4 @@ urlpatterns = [
     path('recipes/unsave', views.recipe_unsave, name='recipe_unsave'),
     path('recipes/search_by_ingredients', views.get_recipe_from_product_list, name='get_recipe_from_product_list'),
 
-    path('user_dashboard', views.user_dashboard, name='user_dashboard'),
-
 ]
