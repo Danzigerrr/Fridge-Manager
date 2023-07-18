@@ -14,6 +14,7 @@
 <form action="{% url 'register_user' %}" method=POST>
 	{% csrf_token %}
 	{{ form.as_p }}
+	{{ profile_form.as_p }}
 	<br/><br/>
 	<input type="submit" value="Submit" class="btn btn-secondary">
 </form>

@@ -1,13 +1,19 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
-from .forms import RegisterUserForm, UpdateUserForm
+from .forms import RegisterUserForm, UpdateUserForm, UserProfileForm
 from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.forms import PasswordChangeForm
 
+# Add higher directory to python modules path:
 import sys
+<<<<<<< Updated upstream
 sys.path.append("..")  # Adds higher directory to python modules path.
 from fridge.models import Product, Fridge
+=======
+sys.path.append("..")
+from fridge.models import Product, Fridge, Recipe
+>>>>>>> Stashed changes
 
 
 def login_user(request):
@@ -20,7 +26,7 @@ def login_user(request):
             return redirect('home')
         else:
             error_message = "There was an error logging in! Try again!"
-            messages.success(request, error_message)
+            messages.error(request, error_message)
             return redirect('login')
     else:
         return render(request, 'authenticate/login.html', {})
@@ -35,8 +41,15 @@ def logout_user(request):
 def register_user(request):
     if request.method == "POST":
         form = RegisterUserForm(request.POST)
-        if form.is_valid():
+        profile_form = UserProfileForm(request.POST)
+
+        if form.is_valid() and profile_form.is_valid():
             form.save()
+
+            profile = profile_form.save(commit=False)
+            profile.user = request.user
+            profile.save()
+
             username = form.cleaned_data['username']
             password = form.cleaned_data['password1']
             user = authenticate(username=username, password=password)
@@ -45,9 +58,10 @@ def register_user(request):
             return redirect('home')
     else:
         form = RegisterUserForm()
+        profile_form = UserProfileForm()
 
     return render(request, 'authenticate/register_user.html', {
-        'form': form,
+        'form': form, 'profile_form': profile_form
     })
 
 
