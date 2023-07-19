@@ -5,6 +5,7 @@ from .forms import RegisterUserForm, UpdateUserForm, UserProfileForm
 from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.forms import PasswordChangeForm
 import datetime
+from django.db.models import Count
 
 # Add higher directory to python modules path:
 import sys
@@ -103,9 +104,15 @@ def update_profile(request):
 
 
 def user_dashboard(request):
-    product_count = Product.objects.all().count()
-    fridge_count = Fridge.objects.all().count()
-    recipe_count = Recipe.objects.all().count()
+    current_user = request.user
+    fridges_of_user = Fridge.objects.filter(owners=current_user)
+    fridge_count = fridges_of_user.count()
 
-    context = {'product_count': product_count, 'fridge_count': fridge_count, 'recipe_count': recipe_count}
+    product_count = 0
+    for fridge in fridges_of_user:
+        product_count += Product.objects.filter(fridge=fridge).count()
+
+    recipe_count = Recipe.objects.filter(saved_by=current_user).count()
+
+    context = {'fridge_count': fridge_count, 'product_count': product_count, 'recipe_count': recipe_count}
     return render(request, 'dashboard.html', context)
