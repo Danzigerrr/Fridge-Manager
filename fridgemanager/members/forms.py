@@ -43,4 +43,4 @@ class UpdateUserForm(forms.ModelForm):
 class UserProfileForm(forms.ModelForm):
     class Meta:
         model = UserProfile
-        fields = ('daily_points',)
+        fields = []
