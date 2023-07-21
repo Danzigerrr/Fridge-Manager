@@ -1,14 +1,30 @@
 # Fridge Manager - web application using Django framework
+## Manage food in your fridge and get inspired by recipes based on your current products - fight food waste today!
+### Author: **Krzysztof Nazar**
 
-Author: **Krzysztof Nazar**
+## Table of contents
+* [Live demo](#Live demo)
+* [The goal of the project](#the-goal-of-the-project)
+* [Main functionalities of the application](#main-functionalities-of-the-application)
+* [Watch the user tutorial](#watch-the-user-tutorial)
+* [Run project locally](#run-project-locally)
+  + [Installation of libraries](#installation-of-libraries)
+  + [Running the project](#running-the-project)
+* [Why did I create this project?](#why-did-i-create-this-project-)
+* [What I've learnt during this project?](#what-i-ve-learnt-during-this-project-)
+* [Used libraries](#used-libraries)
+* [Possible future improvements](#possible-future-improvements)
+* [Contributing](#contributing)
+* [License](#license)
 
-## [Live demo](https://fridgemanagerbykn.pythonanywhere.com/) 
+
+## Live demo 
 Use [**this link**](https://fridgemanagerbykn.pythonanywhere.com/) to check the demo of this application hosted by [Pythonanywhere.com](https://pythonanywhere.com).
+
 
 ## The goal of the project
 **The goal of this project is to deploy a Django web application allowing the users to manage their fridges and reduce the food waste.**
 The key functionality of the app is to search for recipes using the products stored currently in the fridge.
-
 
 
 ## Main functionalities of the application
@@ -29,8 +45,11 @@ Here is the tutorial available on YouTube:
 
 [![Watch the user tutorial](https://img.youtube.com/vi/VIDEO_ID/0.jpg)](https://youtu.be/VIDEO_ID)
 
+
 ## Run project locally
+
 ### Installation of libraries
+
 1. Install virtualenv:
 ```bash
 pip install virtualenv
@@ -51,6 +70,7 @@ pip install -r requirements.txt
 ```bash
 deactivate
 ```
+
 ### Running the project
 With active virtual environment, run the following commands to run the Django project.
 1. Change directory to project directory:
@@ -87,18 +107,22 @@ During this project I learnt how to:
 - use spoonacular API ([docs](https://spoonacular.com/food-api/docs))
 - create a better README.md 
 
+
 ## Used libraries
  - Django
  - requests
  - secrets
  
+
 ## Possible future improvements
 
 - **Add an option to define the priority of products used as ingredients** - the user can define what products he/she wants to use today
 
+
 ## Contributing
 
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+
 
 ## License
 
