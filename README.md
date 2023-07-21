@@ -10,6 +10,7 @@ Use [**this link**](https://fridgemanagerbykn.pythonanywhere.com/) to check the 
 The key functionality of the app is to search for recipes using the products stored currently in the fridge.
 
 
+
 ## Main functionalities of the application
 
 The application provides an interface and tools designed for managing products stored in a fridge.
@@ -22,7 +23,46 @@ The key functionalities in the app include:
 - **Search for recipes** - Check out the meal which can be made using the products in your fridge
 - **User dashboard** - See statistics of your account in one place
 
-## Why did I create this?
+
+## Watch the user tutorial
+Here is the tutorial available on YouTube:
+
+[![Watch the user tutorial](https://img.youtube.com/vi/VIDEO_ID/0.jpg)](https://youtu.be/VIDEO_ID)
+
+## Run project locally
+### Installation of libraries
+1. Install virtualenv:
+```bash
+pip install virtualenv
+```
+2. Create a virtual environment:
+```bash
+virtualenv <my_env_name>
+```
+3. Activate the environment:
+```bash
+source <my_env_name>/bin/activate
+```
+4. Install the requirements in the current environment:
+```bash
+pip install -r requirements.txt
+```
+5. This step is optional - if you want to deactivate your current environment use hte following command:
+```bash
+deactivate
+```
+### Running the project
+With active virtual environment, run the following commands to run the Django project.
+1. Change directory to project directory:
+```bash
+cd fridgemanager
+```
+2. Run server using manage.py file:
+```bash
+python manage.py runserver
+```
+
+## Why did I create this project?
 
 By creating this app I would like to have an impact on the global food waste problem.
 According to [Greenly Institute](https://greenly.earth/en-us/blog/ecology-news/global-food-waste-in-2022):
@@ -37,6 +77,7 @@ Users of my app can **#ActLocallyAndThinkGlobally** by reducing their own food w
 
 
 ## What I've learnt during this project?
+
 During this project I learnt how to:
 - setup user authorisation in Django ([docs](https://docs.djangoproject.com/en/4.2/topics/auth/))
 - use Bootstrap for styling ([docs](https://getbootstrap.com/docs/4.0/content/images/))
@@ -44,6 +85,7 @@ During this project I learnt how to:
 - manage relationships between Django models ([docs](https://docs.djangoproject.com/en/4.2/topics/db/models/))
 - improved my skills in creating Django forms ([docs](https://docs.djangoproject.com/en/4.2/topics/forms/))
 - use spoonacular API ([docs](https://spoonacular.com/food-api/docs))
+- create a better README.md 
 
 ## Used libraries
  - Django
