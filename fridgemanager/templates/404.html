@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block content %}
+    {% if user.is_authenticated %}
+        <center>
+            <div id="notfound">
+                <div class="notfound">
+                    <div class="notfound-header">
+                        <h1>404</h1>
+                    </div>
+                    <h2>Oops! The page you are looking for cannot be found. It might have been moved, deleted, or the URL is incorrect.</h2>
+                    <a href="{% url 'home' %}" class="btn btn-secondary"><span class="arrow"></span>Return to Homepage</a>
+                </div>
+            </div>
+        </center>
+
+
+    {% include 'error_pages_style.html' %}
+
+    {% else %}
+        {% include 'no_access_without_login_info.html' %}
+    {% endif %}
+{% endblock %}

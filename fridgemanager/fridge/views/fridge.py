@@ -164,7 +164,7 @@ def fridge_delete(request, fridge_id):
             messages.success(request, 'Fridge deleted!')
             return redirect('fridge_list')
 
-    messages.success(request, 'You are unauthorized to delete this fridge!')
+    messages.error(request, 'You are unauthorized to delete this fridge!')
     return redirect('fridge_list')
 
 

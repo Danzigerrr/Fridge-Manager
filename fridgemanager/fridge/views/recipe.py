@@ -5,7 +5,6 @@ from ..models import Recipe, Product, Fridge
 from ..api_key import api_key_value
 from django.core.paginator import Paginator
 from django.contrib import messages
-import requests
 from django.db.models import Count
 
 

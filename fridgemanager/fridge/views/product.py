@@ -64,7 +64,7 @@ def product_delete(request, product_id):
             messages.success(request, 'Product deleted!')
             return redirect('product_list')
 
-    messages.success(request, 'You are unauthorized to delete this product!')
+    messages.error(request, 'You are unauthorized to delete this product!')
     return redirect('product_list')
 
 
