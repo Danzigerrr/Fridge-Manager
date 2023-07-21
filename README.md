@@ -2,25 +2,25 @@
 
 Author: **Krzysztof Nazar**
 
-[//]: # (## [Live demo]&#40;https://iaestetablebykn.pythonanywhere.com/&#41; of the app)
-[//]: # (Use [**this link**]&#40;https://iaestetablebykn.pythonanywhere.com/&#41; to check the demo of this application hosted by [Pythonanywhere.com]&#40;https://pythonanywhere.com&#41;.)
+## [Live demo](https://fridgemanagerbykn.pythonanywhere.com/) 
+Use [**this link**](https://fridgemanagerbykn.pythonanywhere.com/) to check the demo of this application hosted by [Pythonanywhere.com](https://pythonanywhere.com).
 
 ## The goal of the project
-**The goal of this project is to deploy a Django web application allowing the users to manage their fridges and reduce the food waste.
-The key functionality of the app is to search for recipes using the products stored currently in the fridge.**
+**The goal of this project is to deploy a Django web application allowing the users to manage their fridges and reduce the food waste.**
+The key functionality of the app is to search for recipes using the products stored currently in the fridge.
 
 
 ## Main functionalities of the application
 
 The application provides an interface and tools designed for managing products stored in a fridge.
 
-The key functionalities include:
-
-- **Registering a new user** - Register and log in available.
-- **Setting up your fridge** - Create your fridge
-- **Sharing your fridge with another users** - Use an invitation link to manage the fridge together
-- **Adding products to your fridge** - Add new products by defining their name, expiration date, and amount
-- **Searching for recipes** - You can search for great recipes in which you can use your products as ingredients
+The key functionalities in the app include:
+- **Register as a new user** - Register to the system.
+- **Add your fridge** - Create your fridge and define its details
+- **Share your fridge with another users** - Use an invitation link, send it to another user, and manage one fridge together
+- **Add products to your fridge** - Add new products by defining their name, expiration date, amount, etc.
+- **Search for recipes** - Check out the meal which can be made using the products in your fridge
+- **User dashboard** - See statistics of your account in one place
 
 ## Why did I create this?
 
@@ -35,8 +35,20 @@ Boston Consulting Group (BCG) estimates this wasted food is worth $230 billion.
 
 Users of my app can **#ActLocallyAndThinkGlobally** by reducing their own food waste.
 
+
+## What I've learnt during this project?
+During this project I learnt how to:
+- setup user authorisation in Django ([docs](https://docs.djangoproject.com/en/4.2/topics/auth/))
+- use Bootstrap for styling ([docs](https://getbootstrap.com/docs/4.0/content/images/))
+- create custom error pages ([tutorial](https://dev.to/riyanagueco/creating-a-custom-error-page-on-django-3nnd))
+- manage relationships between Django models ([docs](https://docs.djangoproject.com/en/4.2/topics/db/models/))
+- improved my skills in creating Django forms ([docs](https://docs.djangoproject.com/en/4.2/topics/forms/))
+- use spoonacular API ([docs](https://spoonacular.com/food-api/docs))
+
 ## Used libraries
  - Django
+ - requests
+ - secrets
  
 ## Possible future improvements
 
@@ -44,8 +56,7 @@ Users of my app can **#ActLocallyAndThinkGlobally** by reducing their own food w
 
 ## Contributing
 
-Pull requests are welcome. For major changes, please open an issue first
-to discuss what you would like to change.
+Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
 ## License
 
