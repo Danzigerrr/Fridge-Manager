@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content %}
+    {% if user.is_authenticated %}
+        <center>
+            <div id="notfound">
+                <div class="notfound">
+                    <div class="notfound-404">
+                        <h1>400</h1>
+                    </div>
+                    <h2>Oops! It seems like the request was malformed or invalid. Please check the URL or parameters and try again.</h2>
+                    <a href="{% url 'home' %}"><span class="arrow"></span>Go to Homepage</a>
+                </div>
+            </div>
+        </center>
+    {% else %}
+        {% include 'no_access_without_login_info.html' %}
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content %}
+    {% if user.is_authenticated %}
+        <center>
+            <div id="notfound">
+                <div class="notfound">
+                    <div class="notfound-404">
+                        <h1>403</h1>
+                    </div>
+                    <h2>Access Denied! You do not have permission to access this page. Please make sure you are authorized to view this content.</h2>
+                    <a href="{% url 'home' %}"><span class="arrow"></span>Go to Homepage</a>
+                </div>
+            </div>
+        </center>
+    {% else %}
+        {% include 'no_access_without_login_info.html' %}
+    {% endif %}
+{% endblock %}

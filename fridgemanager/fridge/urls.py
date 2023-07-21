@@ -28,3 +28,8 @@ urlpatterns = [
     path('recipes/search_by_ingredients', views.get_recipe_from_product_list, name='get_recipe_from_product_list'),
 
 ]
+
+handler404 = 'fridge.views.handler404'
+handler500 = 'fridge.views.handler500'
+handler403 = 'fridge.views.handler403'
+handler400 = 'fridge.views.handler400'
