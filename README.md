@@ -3,7 +3,7 @@
 ### Author: **Krzysztof Nazar**
 
 ## Table of contents
-* [Live demo](#Live demo)
+* [Live demo](#Live-demo)
 * [The goal of the project](#the-goal-of-the-project)
 * [Main functionalities of the application](#main-functionalities-of-the-application)
 * [Watch the user tutorial](#watch-the-user-tutorial)
