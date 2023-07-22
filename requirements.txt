@@ -9,7 +9,7 @@ idna==3.4
 iniconfig==2.0.0
 packaging==23.1
 Pillow==9.5.0
-pluggy==1.2.0
+pluggy==0.13.1
 py==1.11.0
 pytest==5.4.0
 pytest-django==4.5.2
