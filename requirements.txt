@@ -1,4 +1,6 @@
 asgiref==3.7.2
+atomicwrites==1.4.1
+attrs==23.1.0
 certifi==2023.5.7
 charset-normalizer==3.2.0
 colorama==0.4.6
@@ -8,10 +10,13 @@ iniconfig==2.0.0
 packaging==23.1
 Pillow==9.5.0
 pluggy==1.2.0
+py==1.11.0
 pytest==7.4.0
 pytest-django==4.5.2
+pytest-pythonpath==0.7.4
 reportlab==4.0.4
 requests==2.31.0
 sqlparse==0.4.4
+toml==0.10.2
 tzdata==2023.3
 urllib3==2.0.3
