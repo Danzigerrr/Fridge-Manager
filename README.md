@@ -106,6 +106,7 @@ During this project I learnt how to:
 - improved my skills in creating Django forms ([docs](https://docs.djangoproject.com/en/4.2/topics/forms/))
 - use spoonacular API ([docs](https://spoonacular.com/food-api/docs))
 - create a better README.md 
+- write Unit tests using Pytest ([docs](https://pytest-django.readthedocs.io/en/latest/))
 
 
 ## Used libraries
