@@ -40,10 +40,10 @@ The key functionalities in the app include:
 - **User dashboard** - See statistics of your account in one place
 
 
-## Watch the user tutorial
-Here is the tutorial available on YouTube:
-
-[![Watch the user tutorial](https://img.youtube.com/vi/VIDEO_ID/0.jpg)](https://youtu.be/VIDEO_ID)
+[//]: # (## Watch the user tutorial)
+[//]: # (Here is the tutorial available on YouTube:)
+[//]: # ()
+[//]: # ([![Watch the user tutorial]&#40;https://img.youtube.com/vi/VIDEO_ID/0.jpg&#41;]&#40;https://youtu.be/VIDEO_ID&#41;)
 
 
 ## Run project locally
@@ -71,9 +71,24 @@ pip install -r requirements.txt
 deactivate
 ```
 
+### Set up Spoonacular API
+1. Register at Spoonacular [**here**](https://spoonacular.com/food-api/console#Dashboard)
+```bash
+deactivate
+```
+2. Copy your private api key from the user [dashboard](https://spoonacular.com/food-api/console#Profile).
+Remember to keep your api key private and do not share it publicly!
+
+![getting_api_key.png](getting_api_key.png)
+
+3. Create *.env* file with api key in the directory with *manage.py* file (FridgeManager/fridgemanager).
+Use the template given below and paste your private api key.
+```python
+SPOONACULAR_API_KEY=your_api_key
+```
 ### Running the project
 With active virtual environment, run the following commands to run the Django project.
-1. Change directory to project directory:
+1. Go to the project directory:
 ```bash
 cd fridgemanager
 ```
@@ -95,6 +110,11 @@ Boston Consulting Group (BCG) estimates this wasted food is worth $230 billion.
 
 Users of my app can **#ActLocallyAndThinkGlobally** by reducing their own food waste.
 
+
+## Database diagram
+The database diagram shows the relationships between the models. It was generated using DataGrip from Jetbrains.
+
+![database_diagram.png](database_diagram.png)
 
 ## What I've learnt during this project?
 

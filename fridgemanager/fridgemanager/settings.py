@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'fridge',
     'members',
+    'django_extensions',
 ]
 
 MIDDLEWARE = [
