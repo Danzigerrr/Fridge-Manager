@@ -11,7 +11,7 @@ def product_list(request):
     fridges_of_user = Fridge.objects.filter(owners=request.user)
 
     # Retrieve products from all fridges of the user
-    products_of_user = Product.objects.filter(fridge__in=fridges_of_user)
+    products_of_user = Product.objects.filter(fridge__in=fridges_of_user).order_by('created_date')
 
     p = Paginator(products_of_user, 2)  # 2nd arg --> objects per page
     page = request.GET.get('page')

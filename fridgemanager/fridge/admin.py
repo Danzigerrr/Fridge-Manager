@@ -22,7 +22,7 @@ class FridgeAdmin(admin.ModelAdmin):
 
 @admin.register(Recipe)
 class RecipeAdmin(admin.ModelAdmin):
-    fields = ('title', 'image_link', 'link', 'api_likes', 'saved_by')  # creating page
+    fields = ('title', 'image_link', 'link', 'api_likes', 'favourite_by', 'visible_as_daily_recipe')  # creating page
     list_display = ('id', 'title',)  # main page view
     list_filter = ('title',)
     ordering = ('title',)  # default sort order

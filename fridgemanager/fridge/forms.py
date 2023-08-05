@@ -31,7 +31,7 @@ class ProductForm(forms.ModelForm):
         # fields = ('name', 'description')
         labels = {
             'name': '',
-            'expire_date': 'YYYY-MM-DD HH:MM:SS',
+            'expire_date': 'Expire date',
             'amount': '',
             'amount_unit': ' ',
             'description': '',
@@ -41,6 +41,7 @@ class ProductForm(forms.ModelForm):
         # widgets are used for styling
         widgets = {
             'name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Product name'}),
+            'expire_date': forms.DateInput(attrs={'class': 'form-control', 'type': 'datetime-local'}),
             'amount': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Amount'}),
             'description': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Product description'}),
             'fridge': forms.Select(attrs={'class': 'form-control'}),

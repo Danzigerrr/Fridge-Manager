@@ -67,8 +67,10 @@
 			</li>
 			{% endif %}
 		</ul>
-		<div class="ml-auto">
-			<h3 class="welcome_text text-capitalize bg-dark text-white">Welcome {{ request.user.first_name }}!</h3>
-		</div>
+		{% if user.is_authenticated %}
+			<div class="ml-auto">
+				<h3 class="welcome_text text-capitalize bg-dark text-white">Welcome {{ request.user.first_name }}!</h3>
+			</div>
+		{% endif %}
 	</div>
 </nav>
