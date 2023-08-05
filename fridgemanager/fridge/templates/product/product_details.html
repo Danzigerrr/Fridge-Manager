@@ -2,9 +2,7 @@
 
 {% block content %}
     {% if user.is_authenticated %}
-        <h1>PRODUCT DETAILS PAGE</h1>
-
-        <h2>Product with id "{{ product.id }}":</h2>
+        <h2>Details of product "{{ product.name }}":</h2>
 
             <div class="card">
               <div class="card-header">
@@ -16,7 +14,7 @@
                  <li>Owners: {{ product.owners.name }} </li>
                  <li>Description: {{ product.description }} </li>
                     <br>
-                 <a href="{% url 'product_update' product.id %}" class="btn btn-secondary btn-sm">Update this product</a>
+                 <a href="{% url 'product_update' product.id %}" class="btn btn-secondary">Update this product</a>
 
                 </ul>
                   <!--                <a href="#" class="btn btn-primary">Go somewhere</a>-->

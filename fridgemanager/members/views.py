@@ -29,7 +29,7 @@ def login_user(request):
             # login user
             login(request, user)
 
-            return redirect('user_dashboard')
+            return redirect('home')
         else:
             error_message = "There was an error logging in! Try again!"
             messages.error(request, error_message)

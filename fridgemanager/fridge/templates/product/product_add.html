@@ -5,7 +5,18 @@
             <h1> Add Product </h1>
             <br><br/>
             {% if submitted %}
-                Your Product Was Added Successfully!
+                <div class="border border-success border-3">
+                    <div class="card text-center">
+                      <div class="card-header">
+                          <h3>Your product was added successfully!</h3>
+                      </div>
+                      <div class="card-body">
+                        <p class="card-text"><h5>Your product is stored in your fridge!</h5></p>
+                        <a href="{% url 'product_list' %}" class="btn btn-primary">See your products</a>
+                      </div>
+                    </div>
+                </div>
+
             {% else %}
                 <form action="" method=POST>
                     {% csrf_token %}

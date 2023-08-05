@@ -1,32 +1,57 @@
 {% extends 'base.html' %}
 {% block content %}
 	{% if user.is_authenticated %}
-		<h1>PRODUCTS PAGE</h1>
-		{% if products|length > 0 %}
-			<h2>Products:</h2>
-			<h3>Number of products: {{ products_len }}</h3>
-				{% for product in products %}
-				<div class="card">
-					<div class="card-header">
-						<strong>{{ product.name }} </strong>
+		{% if fridges_of_user %}
+			{% if products %}
+				<h1>Your products:</h1>
+				<h3>Number of products: {{ products_len }}</h3>
+					{% for product in products %}
+					<div class="card">
+						<div class="card-header">
+							<strong>{{ product.name }} </strong>
+						</div>
+						<div class="card-body">
+							<ul>
+								<li><b>Expiration date:</b> {{ product.expire_date }} </li>
+								<li><b>Amount:</b> {{ product.amount }} </li>
+								<li><b>Description:</b> {{ product.description }} </li>
+							</ul>
+							<a href="{% url 'product_update' product.id %}" class="btn btn-primary">Update</a>
+							<a href="{% url 'product_delete' product.id %}" class="btn btn-danger">Delete</a>
+							<a href="{% url 'product_detail' product.id %}" class="btn btn-secondary">Detail</a>
+						</div>
 					</div>
-					<div class="card-body">
-						<ul>
-							<li>Expiration date: {{ product.expire_date }} </li>
-							<li>Amount: {{ product.amount }} </li>
-							<li>Description: {{ product.description }} </li>
-						</ul>
-						<a href="{% url 'product_update' product.id %}" class="btn btn-primary">Update</a>
-						<a href="{% url 'product_delete' product.id %}" class="btn btn-danger">Delete</a>
-						<a href="{% url 'product_detail' product.id %}" class="btn btn-secondary">Detail</a>
+					<br/>
+					{% endfor %}
+				<hr>
+			{% include 'product/product_list_paginator.html' %}
+			{% else %}
+				<br>
+					<div class="border border-danger border-3">
+						<div class="card text-center">
+						  <div class="card-header">
+							  <h3>No products found!</h3>
+						  </div>
+						  <div class="card-body">
+							<p class="card-text"><h5>You do not have any products! Create one using the link below.</h5></p>
+							<a href="{% url 'product_add' %}" class="btn btn-primary">Create product here</a>
+						  </div>
+						</div>
 					</div>
-				</div>
-				<br/>
-				{% endfor %}
-			<hr>
-		{% include 'product/product_list_paginator.html' %}
+			{% endif %}
 		{% else %}
-			<h2>No products currently available. Click <a href="{% url 'product_add' %}">here</a> to add products.</h2>
+			<br>
+			<div class="border border-danger border-3">
+				<div class="card text-center">
+				  <div class="card-header">
+					  <h3>No fridges found!</h3>
+				  </div>
+				  <div class="card-body">
+					<p class="card-text"><h5>You do not have any fridges! Create one using the link below.</h5></p>
+					<a href="{% url 'fridge_add' %}" class="btn btn-primary">Create fridge here</a>
+				  </div>
+				</div>
+			</div>
 		{% endif %}
 	{% else %}
 		{% include 'no_access_without_login_info.html' %}
