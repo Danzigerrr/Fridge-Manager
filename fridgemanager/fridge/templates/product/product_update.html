@@ -2,10 +2,9 @@
 
 {% block content %}
     {% if user.is_authenticated %}
-        <h1>PRODUCT UPDATE PAGE</h1>
-
-        <h2>Update Product with id "{{ fridge.id }}":</h2>
-
+        <br>
+            <h2>Update product "{{ product.name }}":</h2>
+        <br>
         <form action="" method=POST>
             {% csrf_token %}
             {{ form.as_p }}

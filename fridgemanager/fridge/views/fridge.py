@@ -182,4 +182,4 @@ def fridge_products(request, fridge_id):
     products_to_show = p.get_page(page)
 
     return render(request, 'product/product_list.html',
-                  {'products': products_to_show, 'products_len': len(products)})
+                  {'products': products_to_show, 'products_len': len(products), 'fridges_of_user': fridge})

@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-	<a class="navbar-brand" href="{% url 'home' %}">Fridge app</a>
+	<a class="navbar-brand" href="{% url 'home' %}">Fridge Manager</a>
 	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 	<span class="navbar-toggler-icon"></span>
 	</button>
@@ -11,7 +11,7 @@
 			{% if user.is_authenticated %}
 			<li class="nav-item dropdown">
 				<a class="nav-link dropdown-toggle" href="{% url 'fridge_list' %}" id="navbarDropdownFridge" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-				Fridge
+				Fridges
 				</a>
 				<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 					<a class="dropdown-item" href="{% url 'fridge_list' %}">Your fridges</a>

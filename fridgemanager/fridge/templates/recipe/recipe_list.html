@@ -1,57 +1,82 @@
 {% extends 'base.html' %}
 {% block content %}
 	{% if user.is_authenticated %}
-		<h1>Recipe list PAGE</h1>
+		{% if fridges_of_user %}
+			{% if products_in_fridges %}
+				<h1>Your daily recipes:</h1>
+				{% for recipe in recipes %}
+					<div class="card">
+						<div class="card-header">
+							<strong><h2>{{ recipe.title }}</h2></strong>
+							<span class="badge badge-success float-left">Likes: {{ recipe.likes }}</span>
+						</div>
+						<div class="card-body">
+							<div class="recipe-container">
+								<div class="ingredients">
+									<h4>Used Ingredients:</h4>
+										<ul>
+											{% for ingredient in recipe.usedIngredients %}
+											<li><strong>{{ ingredient.original }}</strong> </li>
+											{% endfor %}
+										</ul>
+									<h4>Missed Ingredients:</h4>
+										<ul>
+											{% for ingredient in recipe.missedIngredients %}
+												<li><strong>{{ ingredient.original }}</strong></li>
+											{% endfor %}
+										</ul>
+									<h4>Details:</h4>
+										<p>
+											<a href="{{ recipe.recipe_link }}" target="_blank" class="button_link btn-info">Check the details</a>
+										</p>
+									<h4>Save this recipe:</h4>
+										<form method="POST" action="{% url 'recipe_save' %}">
+											{% csrf_token %}
+												<input type="hidden" name="recipe_id" value="{{ recipe.id }}">
+												<input type="hidden" name="recipe_title" value="{{ recipe.title }}">
+												<input type="hidden" name="recipe_link" value="{{ recipe.recipe_link }}">
+												<input type="hidden" name="recipe_image_link" value="{{ recipe.image }}">
+												<input type="hidden" name="recipe_api_likes" value="{{ recipe.likes }}">
+											<button type="submit" class="button_link btn-success">Save this Recipe</button>
+										</form>
 
-			{% for recipe in recipes %}
-
-				<div class="card">
-					<div class="card-header">
-						<strong><h2>{{ recipe.title }}</h2></strong>
-						<span class="badge badge-success float-left">Likes: {{ recipe.likes }}</span>
-					</div>
-					<div class="card-body">
-						<div class="recipe-container">
-            				<div class="ingredients">
-								<h4>Used Ingredients:</h4>
-									<ul>
-										{% for ingredient in recipe.usedIngredients %}
-										<li><strong>{{ ingredient.original }}</strong> </li>
-										{% endfor %}
-									</ul>
-								<h4>Missed Ingredients:</h4>
-									<ul>
-										{% for ingredient in recipe.missedIngredients %}
-											<li><strong>{{ ingredient.original }}</strong></li>
-										{% endfor %}
-									</ul>
-								<h4>Details:</h4>
-									<p>
-										<a href="{{ recipe.recipe_link }}" target="_blank" class="button_link btn-info">Check the details</a>
-									</p>
-								<h4>Save this recipe:</h4>
-									<form method="POST" action="{% url 'recipe_save' %}">
-										{% csrf_token %}
-											<input type="hidden" name="recipe_id" value="{{ recipe.id }}">
-											<input type="hidden" name="recipe_title" value="{{ recipe.title }}">
-											<input type="hidden" name="recipe_link" value="{{ recipe.recipe_link }}">
-											<input type="hidden" name="recipe_image_link" value="{{ recipe.image }}">
-											<input type="hidden" name="recipe_api_likes" value="{{ recipe.likes }}">
-										<button type="submit" class="button_link btn-success">Save this Recipe</button>
-									</form>
-
-							</div>
-							<div class="recipe_img" >
-								<img src="{{ recipe.image }}" alt="{{ recipe.title }}" class="rounded float-right img-fluid recipe_img">
+								</div>
+								<div class="recipe_img" >
+									<img src="{{ recipe.image }}" alt="{{ recipe.title }}" class="rounded float-right img-fluid recipe_img">
+								</div>
 							</div>
 						</div>
 					</div>
+					<br/>
+				{% endfor %}
+			{% else %}
+				<br>
+					<div class="border border-danger border-3">
+						<div class="card text-center">
+						  <div class="card-header">
+							  <h3>No products found!</h3>
+						  </div>
+						  <div class="card-body">
+							<p class="card-text"><h5>You do not have any products! Create one using the link below.</h5></p>
+							<a href="{% url 'product_add' %}" class="btn btn-primary">Create product here</a>
+						  </div>
+						</div>
+					</div>
+			{% endif %}
+		{% else %}
+			<br>
+			<div class="border border-danger border-3">
+				<div class="card text-center">
+				  <div class="card-header">
+					  <h3>No fridges found!</h3>
+				  </div>
+				  <div class="card-body">
+					<p class="card-text"><h5>You do not have any fridges! Create one using the link below.</h5></p>
+					<a href="{% url 'fridge_add' %}" class="btn btn-primary">Create fridge here</a>
+				  </div>
 				</div>
-				<br/>
-
-			{% endfor %}
-
-
+			</div>
+		{% endif %}
 	{% else %}
 		{% include 'no_access_without_login_info.html' %}
 	{% endif %}

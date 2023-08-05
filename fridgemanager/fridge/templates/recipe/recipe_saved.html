@@ -1,46 +1,59 @@
 {% extends 'base.html' %}
 {% block content %}
 	{% if user.is_authenticated %}
-		<h1>Recipe list PAGE</h1>
+		<h1>Recipe list:</h1>
 
-			{% for recipe in recipes %}
+			{% if recipes %}
+				{% for recipe in recipes %}
 
-				<div class="card">
-					<div class="card-header">
-						<strong><h2>{{ recipe.title }}</h2></strong>
-						<span class="badge badge-success float-left">
-							{% if recipe.num_saved_users == 1 %}
-								Saved by {{ recipe.num_saved_users }} user
-							{% else %}
-								Saved by {{ recipe.num_saved_users }} users
-							{% endif %}
-						</span>
-					</div>
-					<div class="card-body">
-						<div class="recipe-container">
-            				<div class="ingredients">
-								<h4>Details:</h4>
-								<p>
-										<a href="{{ recipe.link }}" target="_blank" class="button_link btn-info">Check the details</a>
-								</p>
-								<form method="POST" action="{% url 'recipe_unsave' %}">
-									{% csrf_token %}
-									<input type="hidden" name="recipe_id" value="{{ recipe.id }}">
-									<button type="submit" class="button_link btn-danger">Unsave this Recipe</button>
-								</form>
+					<div class="card">
+						<div class="card-header">
+							<strong><h2>{{ recipe.title }}</h2></strong>
+							<span class="badge badge-success float-left">
+								{% if recipe.num_saved_users == 1 %}
+									Saved by {{ recipe.num_saved_users }} user
+								{% else %}
+									Saved by {{ recipe.num_saved_users }} users
+								{% endif %}
+							</span>
+						</div>
+						<div class="card-body">
+							<div class="recipe-container">
+								<div class="ingredients">
+									<h4>Details:</h4>
+									<p>
+											<a href="{{ recipe.link }}" target="_blank" class="button_link btn-info">Check the details</a>
+									</p>
+									<form method="POST" action="{% url 'recipe_unsave' %}">
+										{% csrf_token %}
+										<input type="hidden" name="recipe_id" value="{{ recipe.id }}">
+										<button type="submit" class="button_link btn-danger">Unsave this Recipe</button>
+									</form>
+								</div>
+								<div class="recipe_img" >
+									<img src="{{ recipe.image_link }}" alt="{{ recipe.title }}" class="rounded float-right img-fluid recipe_img">
+								</div>
+
 							</div>
-							<div class="recipe_img" >
-								<img src="{{ recipe.image_link }}" alt="{{ recipe.title }}" class="rounded float-right img-fluid recipe_img">
-							</div>
-
 						</div>
 					</div>
+					<br/>
+
+				{% endfor %}
+		{% else %}
+		<br>
+			<div class="border border-danger border-3">
+				<div class="card text-center">
+				  <div class="card-header">
+					  <h3>No recipes found!</h3>
+				  </div>
+				  <div class="card-body">
+					<p class="card-text"><h5>You do not have any saved recipes! See the list of recipes using the list below.</h5></p>
+					<a href="{% url 'get_recipe_from_product_list' %}" class="btn btn-primary">See list of recipes here</a>
+				  </div>
 				</div>
-				<br/>
-
-			{% endfor %}
-
-
+			</div>
+		{% endif %}
 	{% else %}
 		{% include 'no_access_without_login_info.html' %}
 	{% endif %}

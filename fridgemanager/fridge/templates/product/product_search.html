@@ -11,10 +11,12 @@
 		{% if searched %}
 			<h1>You searched for {{ searched }}</h1>
 			<br/>
+			<div class="list-group">
 			{% for product in products %}
-				{{ product }}
-		<br/>
-			{% endfor %}
+			  <a href="{% url 'product_detail' product.id %}" class="list-group-item list-group-item-action">{{ product.name }}</a>
+				{% endfor %}
+			</div>
+
 		{% else %}
 			<h1>You forgot to search for the product...</h1>
 		{% endif %}

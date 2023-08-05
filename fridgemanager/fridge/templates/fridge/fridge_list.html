@@ -2,11 +2,11 @@
 
 {% block content %}
     {% if user.is_authenticated %}
-        <h1>FRIDGES PAGE</h1>
         {% if fridges %}
-            <a href="{% url 'fridges_export_as_text' %}" class="btn btn-info btn-sm">Export as TEXT file</a>
-            <a href="{% url 'fridges_export_as_csv' %}" class="btn btn-info btn-sm">Export as CSV file</a>
-            <a href="{% url 'fridges_export_as_pdf' %}" class="btn btn-info btn-sm">Export as PDF file</a>
+            <h1>Your fridges</h1>
+                <a href="{% url 'fridges_export_as_text' %}" class="btn btn-info btn-sm">Export as TEXT file</a>
+                <a href="{% url 'fridges_export_as_csv' %}" class="btn btn-info btn-sm">Export as CSV file</a>
+                <a href="{% url 'fridges_export_as_pdf' %}" class="btn btn-info btn-sm">Export as PDF file</a>
 
         <h2>Fridges:</h2>
         <table class="table table-striped table-hover table-bordered">
