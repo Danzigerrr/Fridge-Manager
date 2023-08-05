@@ -56,8 +56,8 @@ class RecipeModelTest(TestCase):
     def test_recipe_str_representation(self):
         self.assertEqual(str(self.recipe), 'Test Recipe')
 
-    def test_recipe_saved_by_users(self):
-        self.assertEqual(self.recipe.saved_by.count(), 0)
+    def test_recipe_favourite_by_users(self):
+        self.assertEqual(self.recipe.favourite_by.count(), 0)
 
     def test_recipe_api_likes(self):
         self.assertEqual(self.recipe.api_likes, 42)

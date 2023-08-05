@@ -7,7 +7,7 @@ class Fridge(models.Model):
     name = models.CharField('Fridge name', max_length=100)
     created_date = models.DateTimeField('Creation date in the system', auto_now_add=True)
     description = models.CharField('Details about the fridge', max_length=200, blank=True)
-    owners = models.ManyToManyField(User, blank=True)  # one to many
+    owners = models.ManyToManyField(User, blank=True)
     invitation_token = models.UUIDField(default=uuid.uuid4)
 
     def __str__(self):
@@ -55,12 +55,11 @@ class Product(models.Model):
 class Recipe(models.Model):
     title = models.CharField('Recipe title', max_length=100)
     image_link = models.CharField('Link to image', max_length=300)
-    link = models.CharField('Link to recipe', max_length=300)
+    link = models.CharField('Link to recipe', max_length=300, null=True, blank=True)
     api_likes = models.IntegerField('Likes by API users', null=True)
 
-    # if the recipe is saved by any user, do not delete it from the database
-    if_saved = models.BooleanField(default=False)
-    saved_by = models.ManyToManyField(User, blank=True)
+    favourite_by = models.ManyToManyField(User, blank=True, related_name='favorite_recipes')
+    visible_as_daily_recipe = models.ManyToManyField(User, blank=True, related_name='visible_recipes')
 
     def __str__(self):
         return self.title

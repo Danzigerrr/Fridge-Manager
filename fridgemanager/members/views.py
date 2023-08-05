@@ -112,7 +112,7 @@ def user_dashboard(request):
     for fridge in fridges_of_user:
         product_count += Product.objects.filter(fridge=fridge).count()
 
-    recipe_count = Recipe.objects.filter(saved_by=current_user).count()
+    recipe_count = Recipe.objects.filter(favourite_by=current_user).count()
 
     context = {'fridge_count': fridge_count, 'product_count': product_count, 'recipe_count': recipe_count}
     return render(request, 'dashboard.html', context)

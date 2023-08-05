@@ -175,7 +175,7 @@ def fridge_products(request, fridge_id):
     if not fridge.owners.filter(pk=request.user.pk).exists():
         raise PermissionDenied
 
-    products = fridge.product_set.all()
+    products = fridge.product_set.all().order_by('created_date')
 
     p = Paginator(products, 2)  # 2nd arg --> objects per page
     page = request.GET.get('page')
