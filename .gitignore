@@ -154,3 +154,4 @@ cython_debug/
 fridgemanager/fridge/migrations/
 fridgemanager/fridge/api_key.py
 .idea/FridgeManager.iml
+fridgemanager/fridge/api_key.py

@@ -7,6 +7,7 @@ colorama==0.4.6
 Django==4.2.2
 idna==3.4
 iniconfig==2.0.0
+more-itertools==10.1.0
 packaging==23.1
 Pillow==9.5.0
 pluggy==0.13.1
@@ -14,9 +15,11 @@ py==1.11.0
 pytest==5.4.0
 pytest-django==4.5.2
 pytest-pythonpath==0.7.4
+python-dotenv==1.0.0
 reportlab==4.0.4
 requests==2.31.0
 sqlparse==0.4.4
 toml==0.10.2
 tzdata==2023.3
 urllib3==2.0.3
+wcwidth==0.2.6
