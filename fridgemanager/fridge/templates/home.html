@@ -1,49 +1,66 @@
 {% extends 'base.html' %}
 {% block content %}
     <div class="container">
-        <h1>Welcome to Fridge Manager!</h1>
+        <center>
+            <h1>Welcome to Fridge Manager!</h1>
+        </center>
     </div>
     <br>
-    <div class="container">
-        <div class="card">
-            <div class="card-header">
-                <h3>1. Set up your fridge and products</h3>
-            </div>
-            <div class="card-body">
-                <h4>Great to see you! <br> Here you can find useful steps how to start:</h4>
-                <div class="list-group">
-                    <a href="{% url 'fridge_add' %}" class="list-group-item list-group-item-action"><b>1. Create your first fridge here!</b></a>
-                    <a href="{% url 'product_add' %}" class="list-group-item list-group-item-action"><b>2. Add products to your fridge here!</b></a>
-                    <a href="{% url 'recipe_list' %}" class="list-group-item list-group-item-action"><b>3. Check out the recipes suggestions based on your products here!</b></a>
-                    <a href="{% url 'product_list' %}" class="list-group-item list-group-item-action"><b>4. See your products here and manage them here!</b></a>
+    {% if user.is_authenticated %}
+        <div class="container">
+            <div class="card">
+                <div class="card-header">
+                    <h3>1. Set up your fridge and products</h3>
+                </div>
+                <div class="card-body">
+                    <h4>Great to see you! <br> Here you can find useful steps how to start:</h4>
+                    <div class="list-group">
+                        <a href="{% url 'fridge_add' %}" class="list-group-item list-group-item-action"><b>1. Create your first fridge here!</b></a>
+                        <a href="{% url 'product_add' %}" class="list-group-item list-group-item-action"><b>2. Add products to your fridge here!</b></a>
+                        <a href="{% url 'recipe_list' %}" class="list-group-item list-group-item-action"><b>3. Check out the recipes suggestions based on your products here!</b></a>
+                        <a href="{% url 'product_list' %}" class="list-group-item list-group-item-action"><b>4. See your products here and manage them here!</b></a>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    <br>
-    <div class="container">
-        <div class="card">
-            <div class="card-header">
-                <h3>2. User Dashboard</h3>
-            </div>
-            <div class="card-body">
-                <p><b>See details about your profile on</b>
-                    <a class="btn btn-outline-primary" href="{% url 'user_dashboard' %}" role="button">user dashboard</a>
-                </p>
-            </div>
-        </div>
-    </div>
-    <br>
-    <div class="container">
-        <div class="card">
-            <div class="card-header">
-                <h3>3. Profile management</h3>
-            </div>
-            <div class="card-body">
-                <p><b>Update your profile details</b>
-                    <a class="btn btn-outline-primary" href="{% url 'update_profile' %}" role="button">here</a>
-                </p>
+        <br>
+        <div class="container">
+            <div class="card">
+                <div class="card-header">
+                    <h3>2. User Dashboard</h3>
+                </div>
+                <div class="card-body">
+                    <p><b>See details about your profile on</b>
+                        <a class="btn btn-outline-primary" href="{% url 'user_dashboard' %}" role="button">user dashboard</a>
+                    </p>
+                </div>
             </div>
         </div>
-    </div>
+        <br>
+        <div class="container">
+            <div class="card">
+                <div class="card-header">
+                    <h3>3. Profile management</h3>
+                </div>
+                <div class="card-body">
+                    <p><b>Update your profile details</b>
+                        <a class="btn btn-outline-primary" href="{% url 'update_profile' %}" role="button">here</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    {% else %}
+        <div class="border border-info">
+            <div class="card text-center">
+              <div class="card-header">
+                  <h3>Create your account</h3>
+              </div>
+              <div class="card-body">
+                  <p class="card-text"><h5><b>To use the application you have to be logged in!</b> <br> Login or register using the links below!</h5></p>
+                <a href="{% url 'login' %}" class="btn btn-success">Login</a>
+                <a href="{% url 'register_user' %}" class="btn btn-primary">Register</a>
+              </div>
+            </div>
+        </div>
+    {% endif %}
 {% endblock %}
