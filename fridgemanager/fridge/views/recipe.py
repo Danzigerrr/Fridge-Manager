@@ -1,18 +1,20 @@
-import json
 import requests
+import os
 from django.shortcuts import get_object_or_404, render, redirect
 from ..models import Recipe, Product, Fridge
-from ..api_key import api_key_value
-from django.core.paginator import Paginator
 from django.contrib import messages
 from django.db.models import Count
 from ast import literal_eval
+from dotenv import load_dotenv
+load_dotenv()
 
 
 def get_recipes_from_api(products_names, number_of_recipes):
     # deployment
+    load_dotenv()
+    SPOONACULAR_API_KEY = os.getenv('SPOONACULAR_API_KEY')
     base_url = "https://api.spoonacular.com/recipes/findByIngredients"
-    params = {'apiKey': api_key_value,
+    params = {'apiKey': SPOONACULAR_API_KEY,
               'number': number_of_recipes,
               'ingredients': str(products_names)
               }
