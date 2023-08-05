@@ -1,5 +1,4 @@
 {% extends 'base.html' %}
-
 {% block content %}
     <script>
         function copyToClipboard(element) {
@@ -11,40 +10,37 @@
           alert("Link has been copied!");
         }
     </script>
-
     {% if user.is_authenticated %}
-        <h1>FRIDGE DETAILS PAGE</h1>
-
-        <h2>Fridge with id "{{ fridge.id }}":</h2>
-
-            <div class="card">
-              <div class="card-header">
-                  <strong>{{ fridge.name }} </strong>
-              </div>
-              <div class="card-body">
-                <ul>
-                 <li>Creation date: {{ fridge.created_date }} </li>
-                 <li>Owners: {{ fridge.owners.name }} </li>
-                 <li>Description: {{ fridge.description }} </li>
-                 <li>
-                     Invitation link:
-                     <p id="invitationLinkFridge">{{ fridge.invitation_link }}</p>
-
-                        <button onclick="copyToClipboard('#invitationLinkFridge')" class="btn btn-info">Copy invitation link</button>
-
-                 </li>
-                    <br>
-                 <a href="{% url 'fridge_update' fridge.id %}" class="btn btn-secondary btn-sm">Update this fridge</a>
-
-                </ul>
-                  <!--                <a href="#" class="btn btn-primary">Go somewhere</a>-->
-              </div>
+        <br>
+        <div class="card">
+            <div class="card-header">
+                <h3>Fridge <b>"{{ fridge.name }}"</b> details</h3>
             </div>
-            <br/>
+            <div class="card-body">
+                <ul>
+                    <li><b>Fridge ID:</b> {{ fridge.id }} </li>
+                    <li><b>Fridge name:</b> {{ fridge.name }} </li>
+                    <li><b>Creation date:</b> {{ fridge.created_date }} </li>
+                    <li><b>Owners:</b>
+                        {% for owner in fridge.owners.all %}
+                        {{ owner.first_name }}
+                        {% if not forloop.last %}, {% endif %}
+                        {% endfor %}
+                    </li>
+                    <li><b>Description:</b>  {{ fridge.description }} </li>
+                    <li>
+                        <b>Invitation link:</b>
+                        <p id="invitationLinkFridge">{{ fridge.invitation_link }}</p>
+                        <button onclick="copyToClipboard('#invitationLinkFridge')" class="btn btn-info">Copy invitation link</button>
+                    </li>
+                    <br>
+                    <a href="{% url 'fridge_update' fridge.id %}" class="btn btn-secondary">Update this fridge</a>
+                </ul>
+                <!--                <a href="#" class="btn btn-primary">Go somewhere</a>-->
+            </div>
+        </div>
+        <br/>
     {% else %}
         {% include 'no_access_without_login_info.html' %}
     {% endif %}
-
-
-
 {% endblock %}
